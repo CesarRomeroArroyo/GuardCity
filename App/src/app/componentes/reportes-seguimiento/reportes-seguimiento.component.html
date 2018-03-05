@@ -1,0 +1,72 @@
+<nav class="nav-extended" style="background: #2c8eb3">
+    <div class="side-navbar">
+      <div style="padding-bottom: 10px;  text-align: center"><a class="brand-logo">Reporte</a></div>
+      <a href="javascript:history.back(1)">
+          <i class="fa fa-arrow-left fa-2x" style="margin-left: 10px;"></i>
+      </a>
+    </div>
+    <div class="nav-content center">
+        Reporte 
+        <br/>
+        <i class="fa fa-bullhorn fa-4x circle" style="background-color: #4a4545;"></i><br/>
+        <div class="nav-content right">
+            <span class="badge red" style="color:white">14/02/2018</span>
+        </div>
+        <br/>
+        <br/>
+    </div>
+    
+</nav>
+<div class="card z-depth-2">
+  <div class="card-content black-text">
+      Mas Informacion: <br/>
+  </div>
+</div>
+
+<div class="card z-depth-2">
+  <div class="card-content black-text">
+      Seguimiento: <br/>
+
+  </div>
+</div>
+
+<div class="card z-depth-2">
+  <div class="card-content black-text">
+      Seguimiento: <br/>
+
+  </div>
+</div>
+
+<div class="col s12 right">                                
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+          <i class="fa fa-bars"></i>
+        </a>
+        <ul>
+          <li><a class="btn-floating yellow darken-1" (click)="abrirModalMapa()"><i class="fa fa-map-marker"></i></a></li>
+          <li><a class="btn-floating blue" (click)="abrirModalSeguimiento()"><i class="fa fa-plus"></i></a></li>
+        </ul>
+      </div>
+</div>
+
+<div id="modalMapa" class="modal bottom-sheet" style="">
+  <div class="modal-content">
+    <p>Mapa de Seguimietno</p>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+  </div>
+</div>
+
+<div id="modalSeguimiento" class="modal bottom-sheet" style="">
+  <div class="modal-content">
+    <p>Añadir Seguimiento</p>
+    <div class="input-field col s12">
+        <textarea id="descripcion" class="materialize-textarea" placeholder="Indique Informacion como << moto grande de color X y placas XXX >> o << Sujeto sospechoso con camisa de color verde >>"></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+  </div>
+</div>
+        

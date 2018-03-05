@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+           
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <style>
+            html, body, #map-canvas {
+              height: 90%;margin: 0;padding: 0;
+            }
+
+          </style>         
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>        
+        <script src="js/wow.js" type="text/javascript"></script>
+        <script src="js/init.js" type="text/javascript"></script>
+        <script src="js/usuario.js" type="text/javascript"></script>
+        <link href="css/materialize.css" rel="stylesheet" type="text/css"/>
+        <link href="css/animate.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/materialize.js" type="text/javascript"></script>
+       
+    </head>
+    <body style="background: #227595">
+        <nav class="z-depth-0" style="height: 170px; background: #2c8eb3">
+            <div style='display: block;top:0;left:0;'>
+                <img src="img/usuarioFondo.png" alt="" style="width: 100%; height: 170px" class='responsive-img' onclick="clickFoto()"/>
+            </div> 
+            <div class="side-navbar " >                               
+                <div style='position:absolute;top:0;left:0;'>
+                    <a href="secivico.html" >
+                        <img src="ico/ic_keyboard_arrow_left_white_18dp.png" alt=""/>
+                    </a>
+            </div>                  
+        </nav>
+        
+        <div class="container">
+            <div class=" col s12 animated bounceInLeft" style="text-align: justify; color:white;">
+                <br/>
+                Se un ciudadano Civico, registrate para ingresar a la comunidad, tus datos estaran protegidos y podras solicitarnos que sean eliminados en cualquier momento.
+                <br/>
+                <br/>
+            </div>                        
+        </div>
+        
+            <div class="col s12">
+              <div class="card ">
+                <div class="card-content black-text">
+                  
+                    <div class="container">
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <br/>
+                                    <div class="input-field col s12">
+                                      <input id="nombre" type="text" class="validate">
+                                      <label for="nombre">Tu Nombre</label>
+                                    </div>
+                                
+                                    <div class="input-field col s12">
+                                      <input id="correo" type="text" class="validate">
+                                      <label for="correo">Tu Email</label>
+                                    </div>
+                                
+                                    <div class="input-field col s12">
+                                      <input id="ciudad" type="text" class="validate">
+                                      <label for="ciudad">Tu Ciudad</label>
+                                    </div>
+                                
+                                    <div class="input-field col s12" style="text-align: center">
+                                        <a class="waves-effect waves-light btn-large" onclick="guardarDatos()">Guardar Mis Datos</a>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                    
+                </div>                
+              </div>
+            </div>        
+            </div>        
+        
+            <div class="col s12">
+              <div class="card ">
+                <div class="card-content black-text">
+                  
+                    <div class="container">
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <br/>
+                                  
+                                    <div class="input-field col s12" style="text-align: center">
+                                        <a class="waves-effect waves-light red btn-large">Eliminar mis Datos</a>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                    
+                </div>                
+              </div>
+            </div>        
+            </div>        
+        <br/>
+    
+        <input id="lon" type="hidden">
+        <input id="lat" type="hidden">
+        <input id="idunico" type="hidden">
+        <input id="seccion" type="hidden">
+        
+        
+     
+        <div class="fixed-action-btn go-top" style="bottom: 5px; right: 24px;display: none">
+            <a class="btn-floating btn-large " style="background: #062036" onclick="$('html, body').animate({ scrollTop: 0 }, 'slow')">
+              <i class="large mdi-editor-publish"></i>
+            </a>            
+        </div>
+        
+        <div id="modal1" class="modal modal-fixed-footer" style="height: 204px;">
+        <div class="modal-content" style="height: 204px;text-align: center;  padding-bottom: 0px;">
+          <h4>Registrando Usuario....</h4>
+          <p>Por Favor Espere</p>
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+            </div>
+          <br/>
+          <br/>
+        </div>
+    </div>
+    </body>
+</html>

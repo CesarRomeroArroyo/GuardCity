@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+           
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <style>
+            html, body, #map-canvas {
+              height: 90%;margin: 0;padding: 0;
+            }
+
+          </style>
+          
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>        
+        <script src="js/wow.js" type="text/javascript"></script>
+        <script src="js/init.js" type="text/javascript"></script>
+        
+        <link href="css/materialize.css" rel="stylesheet" type="text/css"/>
+        <link href="css/animate.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/materialize.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $( document ).ready(function(){
+                $(".dropdown-button").dropdown({hover: false });
+            });
+        </script>
+        <style>
+            .itemmenu{
+ 
+    float:left;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+   
+    background-color: #de1f20;
+    
+}
+
+        </style>
+    </head>
+    <body style='background: #2c8eb3'>        
+        <nav class="z-depth-0" style="height: auto; background: #2c8eb3">
+            <div style='display: block;top:0;left:0;'>
+                <img src="img/SeCivico.png" alt="" class='responsive-img'/>
+            </div> 
+            <div class="side-navbar " >                               
+                <div style='position:absolute;top:0;left:0;'>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse">
+                        <img src="ico/ic_menu_white_18dp.png" alt=""/>
+                    </a>
+                    <ul class="side-nav" id="mobile-demo" style="background: #062036; color:white">
+
+                        <li style="background: #062036;padding:0 0px; text-align: center" class="">                
+                            <div style="width: 100%; text-align: center;height: 60px;padding-top: 15px"><img src="img/logo.png"  alt="" style="top:10px"/>
+                            </div>
+                            <div style="width: 100%; text-align: center">
+                            <label >PARA ESTAR BIEN INFORMADOS</label></div>                            
+                            
+                        </li>             
+                      <li class="">
+                        <a href="index.html">
+                            <div class="row">                   
+                                <div class="col s12" style="vertical-align: central;color:white">Volver a TeleNoticias</div>
+                            </div>
+                        </a>
+                      </li>                                                      
+                      <li class="">
+                        <a href="usuario.html">
+                            <div class="row">                   
+                                <div class="col s12" style="vertical-align: central;color:white">Tu Usuario</div>
+                            </div>
+                        </a>
+                      </li>                                                                                                                                                       
+                    </ul>                    
+                </div>                                                                    
+            </div>
+        </nav>
+        <div class="container">
+            <div class=" col s12 m12" style="text-align: center; color:white;">
+                
+                <b> Bienvenido a Se Civico, un aplicativo con el que haremos una mejor Ciudad.</b>
+                <br/>
+                
+            </div>
+            <div class=" col s12 m12" style="text-align: justify; color:white;">
+                <br/>
+                <b>Se Civico</b> te permite interactuar con los habitantes de la ciudad logrando crear una comunidad que ayude a mejorar nuestra calidad de vida.
+                <br/>
+                <br/>
+                Con Se Civico puedes:
+            </div>
+            
+        </div>
+        <div class=" col s12 m12" style="text-align: justify;">
+                <ul class="collection">
+                    
+                    <li class="collection-item avatar" >
+                      <a href="zonainsegura.html" style="color:black">
+                        <i class="mdi-maps-place circle" style="background: #227595"></i>
+                        <span class="title">Zonas Inseguras</span>
+                        <p>Reportar Zonas Insegras de la ciudad                      
+                        </p>
+                      </a>
+                    </li>
+<!--                    <li class="collection-item avatar" >
+                      <i class="mdi-image-photo-camera circle" style="background: #227595"></i>
+                      <span class="title">Enviar Imagenes</span>
+                      <p>Ayudandonos a ser mas civicos
+                      </p>                      
+                    </li>
+                    <li class="collection-item avatar" >
+                      <i class="mdi-maps-directions-car circle" style="background: #227595"></i>
+                      <span class="title">Trafico</span>
+                      <p>Reportar el estado del Trafico en la ciudad
+                      </p>                      
+                    </li>
+                    <li class="collection-item avatar" >
+                      <i class="mdi-social-location-city circle" style="background: #227595"></i>
+                      <span class="title">Ciudadano</span>
+                      <p>Informarle a otros el estado de los diferentes sitios de interes en la ciudad
+                      </p>                      
+                    </li>
+                    <li class="collection-item avatar" >
+                      <i class="mdi-hardware-keyboard-alt circle" style="background: #227595"></i>
+                      <span class="title">Eventos</span>
+                      <p>Conocer eventos que se den en la ciudad
+                      </p>                      
+                    </li-->
+                    <li class="collection-item avatar" >
+                      <i class="mdi-action-work circle" style="background: #227595"></i>
+                      <span class="title">Ofertas de Empleo</span>
+                      <p>Esta al tanto de las vacantes en tu ciudad
+                      </p>                      
+                    </li>
+                    <li class="collection-item avatar" >
+                      <i class="mdi-action-home circle" style="background: #227595"></i>
+                      <span class="title">Arriendos</span>
+                      <p>Mira las diferentes ofertas de casas, apartamentos y demas en la ciudad
+                      </p>                      
+                    </li>
+                    <!--<li class="collection-item avatar" >
+                      <i class="mdi-av-volume-up circle" style="background: #227595"></i>
+                      <span class="title">Tu Voz</span>
+                      <p>Hazle saber tus sugerencias, quejas, reclamos o felicitaciones a los habitantes de tu ciudad
+                      </p>                      
+                    </li>
+                    -->
+                  </ul>
+            </div>
+        <div class="container">
+            <div class=" col s12 m12" style="text-align: justify; color:white;">
+                 Todo esto en tiempo real y con la mejor calidad que puedes encontrar, creando una comunidad colaborativa unica y sin precedentes,
+                <b>Se Civico</b> por una mejor ciudad
+                <br/>
+                <br/>
+            </div>                        
+        </div>
+       
+        
+         <footer class="page-footer" style="background: #227595; color: white; text-align: justify">
+          <div class="container"> 
+              <div class="row">
+                  <div class="col l12">
+                     <br/> <i class="mdi-alert-warning"></i><b>Se Civico</b> no se hacen responsable de la informacion contenida en este modulo, se realizara un filtro de la informacion que se considere inapropiada. Toda informacion es generada por los usuarios y es de su completa propiedad y responsabilidad.
+                  </div>
+                  
+              </div>
+                
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+                &COPY; 2016 Se Civico
+            
+            </div>
+          </div>
+        </footer>
+        
+            
+   
+        <input id="lon" type="hidden">
+        <input id="lat" type="hidden">
+        <input id="limit" type="hidden">
+        
+        
+    </body>
+</html>
