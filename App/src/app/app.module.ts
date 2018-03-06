@@ -12,6 +12,8 @@ import { HistoricosComponent } from './componentes/historicos/historicos.compone
 import { ReporteHistoricoComponent } from './componentes/reporte-historico/reporte-historico.component';
 import { ReportesDiaComponent } from './componentes/reportes-dia/reportes-dia.component';
 import { ReportesSeguimientoComponent } from './componentes/reportes-seguimiento/reportes-seguimiento.component';
+import { ZonasComponent } from './componentes/zonas/zonas.component';
+import { EncuentrameComponent } from './componentes/encuentrame/encuentrame.component';
 
 
 
@@ -25,7 +27,9 @@ import { ReportesSeguimientoComponent } from './componentes/reportes-seguimiento
     HistoricosComponent,
     ReporteHistoricoComponent,
     ReportesDiaComponent,
-    ReportesSeguimientoComponent
+    ReportesSeguimientoComponent,
+    ZonasComponent,
+    EncuentrameComponent
   ],
   imports: [
     BrowserModule,

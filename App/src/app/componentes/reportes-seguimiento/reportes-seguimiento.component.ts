@@ -1,5 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import * as $ from 'jquery';
+import * as $$ from 'materialize-css';
 
+declare var $: any;
 @Component({
   selector: 'app-reportes-seguimiento',
   templateUrl: './reportes-seguimiento.component.html',
