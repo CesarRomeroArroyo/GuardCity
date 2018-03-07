@@ -9,7 +9,7 @@ export class AppComponent {
   isLogged: boolean;
 
   constructor() {
-    this.isLogged = true;
+    this.isLogged = false;
   }
   onLogIn ($event) {
     this.isLogged = true;

@@ -1,3 +1,111 @@
-<h1>
-  login works!
-</h1>
+<nav class="z-depth-0" style="height: auto; background: #2c8eb3">
+  <div style='display: block;top:0;left:0;'>
+      <img src="../../../assets/img/SeCivico.png" alt="" class='responsive-img'/>
+  </div> 
+</nav>
+<div class="container">
+  <div class=" col s12 m12" style="text-align: center; color:white;">
+      
+      <b> Bienvenido a GuardCity, un aplicativo con el que hacemos nuestra ciudad mas segura.</b>
+      <br/>
+      
+  </div>
+  <div class=" col s12 m12" style="text-align: justify; color:white;">
+     
+      
+  </div>
+  
+</div>
+<div class=" col s12 m12" style="text-align: justify;">
+  <div class="card z-depth-2">
+    <div class="card-content black-text">
+        <div class="container" style="text-align: center">
+            <div class="col s12">
+                Ingresa tus credenciales para poder iniciar a usar GuardCity:
+                <br/>
+                <label><b>Email</b></label>
+                  <input id="email" name="email" type="text" style="text-align: center" [(ngModel)]="usuario.correo">
+              </div>
+              
+              <label><b>Contraseña </b></label>
+              <input id="password" name="password" type="password" style="text-align: center" [(ngModel)]="usuario.password">
+            <div class="col s12">
+                <a class="waves-effect waves-light btn-large" style="width: 99%" (click)="logearse()"><i class="fa fa-sign-in"></i> Ingresar</a>                                
+            </div>
+            <div class="col s12">  
+                <br/>
+            </div>
+            <div class="col s12">
+                <a class="waves-effect waves-light" style="width: 99%" (click)="mostrarNuevoUsuario() ">Registrar Nuevo Usuario</a>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="latzona"/>
+    <input type="hidden" id="lonzona"/>
+  </div>
+  
+</div>
+
+
+<footer class="page-footer" style="background: #227595; color: white; text-align: justify">
+
+<div class="footer-copyright">
+  <div class="container">
+      2016 GuardCity
+  
+  </div>
+</div>
+</footer>
+
+<div id="modal1" class="modal">
+  <div class="modal-content" style="text-align: center">
+    <h5>GuardCity</h5>
+    <p>{{mensaje}}</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+  </div>
+</div>
+
+<div id="modal" class="modal bottom-sheet" style="height: 90% !important; max-height: 90% !important; ">
+  <div class="modal-content">
+    <p>Registrar Nuevo Usuario</p>
+
+    <div class="col s12">
+      <label><b>Nombre</b></label>
+        <input id="nombre" name="nombre" type="text" style="text-align: center" [(ngModel)]="nuevoUsuario.nombre">
+    </div>
+    <div class="col s12">
+      <label><b># Celular</b></label>
+        <input id="celular" name="celualar" type="text" style="text-align: center" [(ngModel)]="nuevoUsuario.celular">
+    </div>
+    <div class="col s12">
+      <label><b>Email</b></label>
+        <input id="correo" name="correo" type="text" style="text-align: center" [(ngModel)]="nuevoUsuario.correo">
+    </div>
+    <div class="col s12">
+      <label><b>Contraseña</b></label>
+        <input id="password" name="password" type="text" style="text-align: center" [(ngModel)]="nuevoUsuario.password">
+    </div>
+    <div class="col s12">
+        <label><b>Ciudad</b></label>
+        <select class="browser-default" [(ngModel)]="nuevoUsuario.ciudad" name="ciudad" style="text-align: center">
+          <option *ngFor="let c of ciudades" [ngValue]="c.texto">{{c.texto}}</option>
+        </select>
+    </div>
+    <div class="col s12">
+      <label><b>Barrio</b></label>
+        <input id="barrio" name="barrio" type="text" style="text-align: center" [(ngModel)]="nuevoUsuario.barrio">
+    </div>
+    <div class="col s12">
+        <a class="waves-effect waves-light btn-large" style="width: 99%" (click)="agregarNuevoUsuario()" ><i class="fa fa-plus"></i> Agregar</a>
+    </div>
+  </div>
+</div>
+
+<div id="modalCargando" class="modal">
+  <div class="modal-content" style="text-align: center">
+    <h5>GuardCity</h5>
+    <i class="fa fa-circle-o-notch fa-5x fa-spin"></i>
+  </div>
+</div>

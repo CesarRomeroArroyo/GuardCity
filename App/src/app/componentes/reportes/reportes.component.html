@@ -12,33 +12,30 @@
           <div class="col s12">
               <br/>
               <label><b>Que Reportas?</b></label>
-              <select class="browser-default" id="tipo">
-                <option value="">Selecciona una Opcion</option>
-                <option value="1">Zona Sospechosa</option>
-                <option value="2">Robo a Casa</option>
-                <option value="3">Robo de Carro</option>
-                <option value="4">Robo a Comercio</option>
-                <option value="5" selected>Robo a Persona</option>
-                <option value="6">Homicidio</option>
-                <option value="7">Venta de Droga</option>
-                <option value="8">Intento de Violacion</option>
-                <option value="9">Otro</option>
-              </select>
+                <select class="browser-default" [(ngModel)]="reporte.tipo" name="tipo">
+                    <option *ngFor="let c of tipo_reporte" [ngValue]="c.texto">{{c.texto}}</option>
+                </select>
             </div>
             <br/>
             <label for="textarea1"><b>Mas informacion </b></label>
             <div class="input-field col s12">
-              <textarea id="descripcion" class="materialize-textarea" placeholder="Indique Informacion como << moto grande de color X y placas XXX >> o << Sujeto sospechoso con camisa de color verde >>"></textarea>
+              <textarea [(ngModel)]="reporte.comentario" id="comentario" name="comentario" class="materialize-textarea" placeholder="Indique Informacion como << moto grande de color X y placas XXX >> o << Sujeto sospechoso con camisa de color verde >>"></textarea>
               
             </div>                            
           <div class="col s12">                                
-              <a class="waves-effect waves-light btn-large" style="width: 99%" onclick="guardarDatos()"><i class="mdi-content-send"></i> Enviar</a>                                
+              <a class="waves-effect waves-light btn-large" style="width: 99%" (click)="enviarReporte()"><i class="mdi-content-send"></i> Enviar</a>                                
           </div>
           <div class="col s12">  
               <br/>
           </div>
       </div>
   </div>
-  <input type="hidden" id="latzona"/>
-  <input type="hidden" id="lonzona"/>
 </div>
+
+
+<div id="modalCargando" class="modal">
+    <div class="modal-content" style="text-align: center">
+      <h5>GuardCity</h5>
+      <i class="fa fa-circle-o-notch fa-5x fa-spin"></i>
+    </div>
+  </div>

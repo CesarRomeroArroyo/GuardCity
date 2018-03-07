@@ -6,11 +6,11 @@
       </a>
     </div>
     <div class="nav-content center">
-        Reporte 
-        <br/>
-        <i class="fa fa-bullhorn fa-4x circle" style="background-color: #4a4545;"></i><br/>
+        
+        <i class="fa fa-bullhorn fa-4x" ></i><br/>
+        <b style="font-size: 25px">{{reporte.tipo}}</b> <br/>
         <div class="nav-content right">
-            <span class="badge red" style="color:white">14/02/2018</span>
+            <span class="badge red" style="color:white">{{reporte.fecha}}</span>
         </div>
         <br/>
         <br/>
@@ -19,25 +19,22 @@
 </nav>
 <div class="card z-depth-2">
   <div class="card-content black-text">
-      Mas Informacion: <br/>
+      <b>Mas Informacion:</b> <br/>
+      {{reporte.comentario}}
   </div>
 </div>
 
-<div class="card z-depth-2">
+<div class="card z-depth-2" *ngFor="let seguimiento of seguimientos">
   <div class="card-content black-text">
-      Seguimiento: <br/>
-
+      {{seguimiento.comentario}} <br/>
+      <div class="nav-content right">
+          <span class="badge red" style="color:white">{{seguimiento.fecha}}</span>
+      </div>
   </div>
 </div>
 
-<div class="card z-depth-2">
-  <div class="card-content black-text">
-      Seguimiento: <br/>
 
-  </div>
-</div>
-
-<div class="col s12 right">                                
+<div class="col s12 right">
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large red">
           <i class="fa fa-bars"></i>
@@ -62,11 +59,11 @@
   <div class="modal-content">
     <p>Añadir Seguimiento</p>
     <div class="input-field col s12">
-        <textarea id="descripcion" class="materialize-textarea" placeholder="Indique Informacion como << moto grande de color X y placas XXX >> o << Sujeto sospechoso con camisa de color verde >>"></textarea>
+        <textarea id="descripcion" class="materialize-textarea" [(ngModel)]="seguimiento.comentario" placeholder="Indique Informacion como << moto grande de color X y placas XXX >> o << Sujeto sospechoso con camisa de color verde >>"></textarea>
     </div>
   </div>
   <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="registrarSeguimiento()" >Aceptar</a>
   </div>
 </div>
         

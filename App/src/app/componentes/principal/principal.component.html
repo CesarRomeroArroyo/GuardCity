@@ -7,18 +7,21 @@
           <a href="#" data-activates="mobile-demo" class="button-collapse">
               <img src="../../../assets/ico/ic_menu_white_18dp.png" alt=""/>
           </a>
+          
           <ul class="side-nav" id="mobile-demo" style="background: #062036; color:white">
+              <br/>
             <li class="">
               <a>
                   <div class="row">                   
-                      <div class="col s12" style="vertical-align: central;color:white">Tu Usuario</div>
+                      <div class="col s12" style="vertical-align: central;color:white" [routerLink]="['usuario']"><i class="fa fa-user"></i> Tu Usuario</div>
                   </div>
               </a>
             </li>
+           
           </ul>
       </div>
       <div style='position:absolute;top:5px;right:15px;'>
-          <a class="btn btn-floating pulse right red" [routerLink]="['reportedia']">
+          <a class="btn btn-floating pulse right red" [routerLink]="['reportedia']" *ngIf="this.numReportes>0">
               <i class="fa fa-exclamation"></i>
           </a>
       </div>
@@ -62,15 +65,23 @@
             </a>
           </li>
           <li class="collection-item avatar" >
-            <a style="color:black"  [routerLink]="['zonas']">
+            <a style="color:black"  [routerLink]="['reportes']">
               <i class="fa fa-map circle" style="background: #227595"></i>
               <span class="title">Zonas en tu Ciudad</span>
               <p>Conoce cuales son las zonas seguras e inseguras de tu ciudad
               </p>
             </a>
           </li>
+          <!--<li class="collection-item avatar" >
+            <a style="color:black"  [routerLink]="['reportes']">
+              <i class="fa fa-map-marker circle" style="background: #227595"></i>
+              <span class="title">Rutas Seguras</span>
+              <p>Programa tus rutas e informa si te desvias
+              </p>
+            </a>
+          </li>-->
           <li class="collection-item avatar" >
-            <a style="color:black"  [routerLink]="['encuentrame']">
+            <a style="color:black"  [routerLink]="['reportes']">
               <i class="fa fa-search circle" style="background: #227595"></i>
               <span class="title">Encuentrame</span>
               <p>Conoce el lugar donde esta tu equipo

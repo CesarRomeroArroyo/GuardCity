@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as $ from 'jquery';
-import * as $$ from 'materialize-css';
+import { FirebaseService } from '../../servicios/firebase.service';
+import { AppSettings } from '../../app.settings';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 
 declare var $: any;
 @Component({
@@ -9,10 +11,40 @@ declare var $: any;
   styleUrls: ['./reportes-seguimiento.component.css']
 })
 export class ReportesSeguimientoComponent implements OnInit, AfterViewInit {
-
-  constructor() { }
+  reporte: any;
+  seguimientos: any;
+  seguimiento: any = {comentario: '', fecha: '', idunico: '', latitud: '', longitud: ''};
+  idReporte: string;
+  constructor(private service: FirebaseService, private activatedRoute: ActivatedRoute, private appSetting: AppSettings) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.idReporte = params['id'];
+      this.buscarReporte();
+    });
+  }
+
+  buscarReporte() {
+    this.service.obtenerDatosPorIdUnico('Reportes', this.idReporte).subscribe(
+      result => {
+        this.reporte = result[0];
+      }
+    );
+  }
+
+  buscarSeguimiento() {
+    this.service.obtenerDatosPorIdUnico('Seguimientos', this.idReporte).subscribe(
+      result => {
+        this.seguimientos = result;
+      }
+    );
+  }
+
+  registrarSeguimiento() {
+    this.seguimiento.fecha = this.appSetting.getCurrentDay();
+    this.seguimiento.idunico = this.idReporte;
+    this.service.guardarSeguimientoDatos('Seguimientos', this.seguimiento);
+    this.buscarSeguimiento();
   }
 
   abrirModalMapa() {
