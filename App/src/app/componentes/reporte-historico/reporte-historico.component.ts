@@ -1,6 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as $ from 'jquery';
-import * as $$ from 'materialize-css';
+import { FirebaseService } from '../../servicios/firebase.service';
+import { AppSettings } from '../../app.settings';
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import { LocalStorageService } from '../../servicios/local-storage.service';
 
 declare var $: any;
 
@@ -12,14 +15,43 @@ declare var $: any;
 })
 export class ReporteHistoricoComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  reporte: any;
+  seguimientos: any;
+  seguimiento: any = {comentario: '', fecha: '', idunico: '', latitud: '', longitud: ''};
+  idReporte: string;
+  ciudad: any;
+  constructor(private service: FirebaseService, private activatedRoute: ActivatedRoute, private appSetting: AppSettings,
+    private local: LocalStorageService) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.ciudad = JSON.parse(this.local.obtener('GUARDCITY_CITY'))[0];
+      this.ciudad.latitud = parseFloat(this.ciudad.latitud);
+      this.ciudad.longitud = parseFloat(this.ciudad.longitud);
+      this.idReporte = params['id'];
+      console.log();
+      this.buscarReporte();
+    });
   }
 
-  abrirModal() {
-    $('#modal').modal('open');
+  buscarReporte() {
+    this.service.obtenerDatosPorIdUnico('Reportes', this.idReporte).subscribe(
+      result => {
+        this.reporte = result[0];
+        this.buscarSeguimiento();
+      }
+    );
   }
+
+  buscarSeguimiento() {
+    this.service.obtenerDatosPorIdUnico('Seguimientos', this.idReporte).subscribe(
+      result => {
+        this.seguimientos = result;
+        console.log(this.seguimientos);
+      }
+    );
+  }
+
 
   ngAfterViewInit(): void {
       $('.modal').modal({
@@ -34,5 +66,9 @@ export class ReporteHistoricoComponent implements OnInit, AfterViewInit {
         complete: function() {  } // Callback for Modal close
       }
     );
+  }
+
+  obtenerFlotante(valor) {
+    return parseFloat(valor);
   }
 }

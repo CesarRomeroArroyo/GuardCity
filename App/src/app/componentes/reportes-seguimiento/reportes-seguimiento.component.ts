@@ -3,6 +3,7 @@ import * as $ from 'jquery';
 import { FirebaseService } from '../../servicios/firebase.service';
 import { AppSettings } from '../../app.settings';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import { LocalStorageService } from '../../servicios/local-storage.service';
 
 declare var $: any;
 @Component({
@@ -15,10 +16,15 @@ export class ReportesSeguimientoComponent implements OnInit, AfterViewInit {
   seguimientos: any;
   seguimiento: any = {comentario: '', fecha: '', idunico: '', latitud: '', longitud: ''};
   idReporte: string;
-  constructor(private service: FirebaseService, private activatedRoute: ActivatedRoute, private appSetting: AppSettings) { }
+  ciudad: any;
+  constructor(private service: FirebaseService, private activatedRoute: ActivatedRoute, private appSetting: AppSettings,
+    private local: LocalStorageService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
+      this.ciudad = JSON.parse(this.local.obtener('GUARDCITY_CITY'))[0];
+      this.ciudad.latitud = parseFloat(this.ciudad.latitud);
+      this.ciudad.longitud = parseFloat(this.ciudad.longitud);
       this.idReporte = params['id'];
       this.buscarReporte();
     });
@@ -28,6 +34,7 @@ export class ReportesSeguimientoComponent implements OnInit, AfterViewInit {
     this.service.obtenerDatosPorIdUnico('Reportes', this.idReporte).subscribe(
       result => {
         this.reporte = result[0];
+        this.buscarSeguimiento();
       }
     );
   }
@@ -41,15 +48,14 @@ export class ReportesSeguimientoComponent implements OnInit, AfterViewInit {
   }
 
   registrarSeguimiento() {
-    this.seguimiento.fecha = this.appSetting.getCurrentDay();
-    this.seguimiento.idunico = this.idReporte;
-    this.service.guardarSeguimientoDatos('Seguimientos', this.seguimiento);
-    this.buscarSeguimiento();
+    if (this.seguimiento.comentario !== '') {
+      this.seguimiento.fecha = this.appSetting.getCurrentDay();
+      this.seguimiento.idunico = this.idReporte;
+      this.service.guardarSeguimientoDatos('Seguimientos', this.seguimiento);
+      this.buscarSeguimiento();
+    }
   }
 
-  abrirModalMapa() {
-    $('#modalMapa').modal('open');
-  }
 
   abrirModalSeguimiento() {
     $('#modalSeguimiento').modal('open');
@@ -68,5 +74,9 @@ export class ReportesSeguimientoComponent implements OnInit, AfterViewInit {
           complete: function() {  } // Callback for Modal close
         }
       );
+  }
+
+  obtenerFlotante(valor) {
+    return parseFloat(valor);
   }
 }

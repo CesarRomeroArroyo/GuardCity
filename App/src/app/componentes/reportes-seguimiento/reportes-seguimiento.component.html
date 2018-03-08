@@ -23,7 +23,22 @@
       {{reporte.comentario}}
   </div>
 </div>
-
+<div class="card z-depth-2">
+    <div class="card-content black-text">
+      <b>Mapa de seguimiento</b>
+      <agm-map [latitude]="ciudad.latitud" [longitude]="ciudad.longitud" [zoom]="13">
+          <agm-marker [latitude]="obtenerFlotante(reporte.latitud)" [longitude]="obtenerFlotante(reporte.longitud)" >
+              <agm-info-window>
+                <b>{{reporte.tipo}}</b><br>
+                {{reporte.comentario}}
+              </agm-info-window>
+          </agm-marker>
+          <agm-marker [latitude]="obtenerFlotante(repo.latitud)" [longitude]="obtenerFlotante(repo.longitud)" *ngFor="let repo of seguimientos">
+              <agm-info-window>{{repo.comentario}}</agm-info-window>
+          </agm-marker>
+      </agm-map>
+    </div>
+</div>
 <div class="card z-depth-2" *ngFor="let seguimiento of seguimientos">
   <div class="card-content black-text">
       {{seguimiento.comentario}} <br/>
@@ -33,27 +48,15 @@
   </div>
 </div>
 
-
 <div class="col s12 right">
     <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red">
-          <i class="fa fa-bars"></i>
+        <a class="btn-floating btn-large " style="background-color: #282f39" (click)="abrirModalSeguimiento()">
+          <i class="fa fa-plus"></i>
         </a>
-        <ul>
-          <li><a class="btn-floating yellow darken-1" (click)="abrirModalMapa()"><i class="fa fa-map-marker"></i></a></li>
-          <li><a class="btn-floating blue" (click)="abrirModalSeguimiento()"><i class="fa fa-plus"></i></a></li>
-        </ul>
       </div>
 </div>
 
-<div id="modalMapa" class="modal bottom-sheet" style="">
-  <div class="modal-content">
-    <p>Mapa de Seguimietno</p>
-  </div>
-  <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
-  </div>
-</div>
+
 
 <div id="modalSeguimiento" class="modal bottom-sheet" style="">
   <div class="modal-content">

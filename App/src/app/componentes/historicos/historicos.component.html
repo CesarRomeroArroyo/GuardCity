@@ -10,37 +10,18 @@
   
       
           <ul class="collection">
-              <li class="collection-item avatar" >
-                <a style="color:black" [routerLink]="['/reportehistorico', '1']">
+
+              <li class="collection-item avatar" *ngFor="let reporte of reportes">
+                <a style="color:black" [routerLink]="['/reportehistorico', reporte.idunico]">
                   <i class="fa fa-bullhorn circle" style="background: #227595">
                     
                   </i>
-                  <span class="title">Reportes de Actividades <span class="badge red" style="color:white">22/02/2018</span> </span>
-                  <p>Reportar diferentes tipos de Actividades en tu ciudad
+                  <span class="title">{{reporte.tipo}} <span class="badge red" style="color:white">{{reporte.fecha}}</span> </span>
+                  <p>{{reporte.comentario.substring(0, 70)}} ...
                   </p>
                 </a>
               </li>
-              <li class="collection-item avatar" >
-                <a style="color:black" [routerLink]="['/reportehistorico', '1']">
-                  <i class="fa fa-bullhorn circle" style="background: #227595">
-                    
-                  </i>
-                  <span class="title">Reportes de Actividades <span class="badge red" style="color:white">22/02/2018</span></span>
-                  <p>Reportar diferentes tipos de Actividades en tu ciudad
-                  </p>
-                </a>
-              </li>
-              <li class="collection-item avatar" >
-                <a style="color:black" [routerLink]="['/reportehistorico', '1']">
-                  <i class="fa fa-bullhorn circle" style="background: #227595">
-                    
-                  </i>
-                  <span class="title">Reportes de Actividades <span class="badge red" style="color:white">22/02/2018</span></span>
-                  <p>Reportar diferentes tipos de Actividades en tu ciudad
-                  </p>
-                </a>
-              </li>
-              
+
             </ul>
       
   

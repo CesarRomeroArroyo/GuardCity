@@ -22,8 +22,9 @@ import { ReportesSeguimientoComponent } from './componentes/reportes-seguimiento
 import { FirebaseService } from './servicios/firebase.service';
 import { LocalStorageService } from './servicios/local-storage.service';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { ZonasComponent } from './componentes/zonas/zonas.component';
 
-
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
     ReporteHistoricoComponent,
     ReportesDiaComponent,
     ReportesSeguimientoComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    ZonasComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,10 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCbYaH_udpTgmdVulwBcv4Lc_0auNY9bS4'
+    })
   ],
   providers: [
     FirebaseService,

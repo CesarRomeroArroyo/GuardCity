@@ -48,6 +48,19 @@ export class FirebaseService {
     );
   }
 
+  obtenerDatosCiudadUsuario(ciudad: string): Observable<any> {
+    this.itemsCollection = this.afs.collection<any>('Ciudades', ref => ref.where('texto', '==', ciudad));
+    return this.itemsCollection.snapshotChanges().map(
+      actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as any;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
+  }
+
   obtenerDatosPorUsuarioFecha(tabla: string, usuario: string, fecha: string): Observable<any> {
     this.itemsCollection = this.afs.collection<any>(tabla, ref => ref.where('usuario', '==', usuario).where('fecha', '==', fecha));
     return this.itemsCollection.snapshotChanges().map(
@@ -61,8 +74,34 @@ export class FirebaseService {
     );
   }
 
+  obtenerDatosPorUsuario(tabla: string, usuario: string): Observable<any> {
+    this.itemsCollection = this.afs.collection<any>(tabla, ref => ref.where('usuario', '==', usuario));
+    return this.itemsCollection.snapshotChanges().map(
+      actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as any;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
+  }
+
   obtenerDatosPorFecha(tabla: string, fecha: string): Observable<any> {
     this.itemsCollection = this.afs.collection<any>(tabla, ref => ref.where('fecha', '==', fecha));
+    return this.itemsCollection.snapshotChanges().map(
+      actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as any;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
+  }
+
+  obtenerDatosPorTipo(tipo: string): Observable<any> {
+    this.itemsCollection = this.afs.collection<any>('Reportes', ref => ref.where('tipo', '==', tipo));
     return this.itemsCollection.snapshotChanges().map(
       actions => {
         return actions.map(a => {

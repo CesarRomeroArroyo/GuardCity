@@ -30,6 +30,7 @@ export class UsuarioComponent implements OnInit, AfterViewInit {
   actualizarDatos() {
     $('#modal1').modal('open');
     this.local.eliminar('GUARDCITY_USER');
+    this.local.eliminar('GUARDCITY_CITY');
     this.service.actualizarDatos('Usuario', this.usuario, this.usuario.id);
     setTimeout(() => {
       this.actualizarStorage();
@@ -39,9 +40,18 @@ export class UsuarioComponent implements OnInit, AfterViewInit {
   actualizarStorage() {
     $('#modal1').modal('close');
     const dataUser: any[] = [];
+    this.obtenerCiudad(this.usuario);
     dataUser.push(this.usuario);
     this.local.agregar('GUARDCITY_USER', JSON.stringify(dataUser));
     this.usuario = JSON.parse(this.local.obtener('GUARDCITY_USER'))[0];
+  }
+
+  obtenerCiudad(usuario) {
+    this.service.obtenerDatosCiudadUsuario(usuario.ciudad).subscribe(
+      result => {
+        this.local.agregar('GUARDCITY_CITY', JSON.stringify(result));
+      }
+    );
   }
 
   ngAfterViewInit(): void {

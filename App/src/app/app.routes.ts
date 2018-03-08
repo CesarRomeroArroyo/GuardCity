@@ -6,6 +6,7 @@ import { ReporteHistoricoComponent } from './componentes/reporte-historico/repor
 import { ReportesDiaComponent } from './componentes/reportes-dia/reportes-dia.component';
 import { ReportesSeguimientoComponent } from './componentes/reportes-seguimiento/reportes-seguimiento.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { ZonasComponent } from './componentes/zonas/zonas.component';
 
 const APP_ROUTES: Routes = [
   { path: '', component: PrincipalComponent },
@@ -15,6 +16,7 @@ const APP_ROUTES: Routes = [
   { path: 'reportehistorico/:id', component: ReporteHistoricoComponent },
   { path: 'reporteseguimiento/:id', component: ReportesSeguimientoComponent },
   { path: 'usuario', component: UsuarioComponent },
+  { path: 'zonas', component: ZonasComponent },
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];
 

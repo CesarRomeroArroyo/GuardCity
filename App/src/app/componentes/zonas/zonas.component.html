@@ -1,3 +1,25 @@
-<p>
-  zonas works!
-</p>
+
+    <div style='display: block;top:0;left:0; position: relative'>
+        
+        <agm-map [latitude]="ciudad.latitud" [longitude]="ciudad.longitud" [zoom]="13">
+            <agm-marker [latitude]="obtenerFlotante(reporte.latitud)" [longitude]="obtenerFlotante(reporte.longitud)" *ngFor="let reporte of reportes">
+                <agm-info-window>{{reporte.tipo}}</agm-info-window>
+            </agm-marker>
+          </agm-map>
+    </div>
+    <div style='display: block;top:0;left:0;  position: absolute'>
+      <div class="side-navbar">
+        
+          <a href="javascript:history.back(1)">
+              <i class="fa fa-arrow-left fa-2x" style="margin-left: 10px;"></i>   
+              
+          </a>
+          <label style="font-size: 18px; color: #039be5;">    Zonas en tu Ciudad</label>
+              
+           
+      </div>
+    </div>
+    <select class="browser-default" [(ngModel)]="tipo" name="tipo" (change)="obtenerReportesPorTipo()">
+        <option value="0"> Todos los reportes </option>
+        <option *ngFor="let c of tipo_reporte" [ngValue]="c.texto">{{c.texto}}</option>
+    </select>

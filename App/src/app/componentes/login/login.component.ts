@@ -79,12 +79,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.service.obtenerDatosLogin(this.usuario.correo, this.usuario.password).subscribe(
       result => {
         if (result.length > 0) {
+          this.obtenerCiudad(result[0]);
           this.local.agregar('GUARDCITY_USER', JSON.stringify(result));
           this.logIn.emit();
         } else {
           this.mensaje = 'El email o la contraseña no son correctos';
           $('#modal1').modal('open');
         }
+      }
+    );
+  }
+
+  obtenerCiudad(usuario) {
+    this.service.obtenerDatosCiudadUsuario(usuario.ciudad).subscribe(
+      result => {
+        this.local.agregar('GUARDCITY_CITY', JSON.stringify(result));
       }
     );
   }
