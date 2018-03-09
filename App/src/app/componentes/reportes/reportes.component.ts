@@ -4,6 +4,7 @@ import { AppSettings } from '../../app.settings';
 import { LocalStorageService } from '../../servicios/local-storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation';
+import { OnesignalService } from '../../servicios/onesignal.service';
 
 import * as $ from 'jquery';
 import * as $$ from 'materialize-css';
@@ -21,7 +22,7 @@ export class ReportesComponent implements OnInit, AfterViewInit {
   tipo_reporte: any = {texto: ''};
   constructor( private service: FirebaseService, private appSettings: AppSettings,
     private local: LocalStorageService, private route: ActivatedRoute,
-    private router: Router, private geolocation: Geolocation) { }
+    private router: Router, private geolocation: Geolocation, private oneSignal: OnesignalService) { }
 
   ngOnInit() {
     this.obtenerTipoReportes();
@@ -45,6 +46,7 @@ export class ReportesComponent implements OnInit, AfterViewInit {
       this.reporte.usuario = usuario.id;
       this.service.guardarDatos('Reportes', this.reporte);
       setTimeout(() => {
+        this.oneSignal.enviarPush(`Se ha reportado ${this.reporte.tipo}`);
         this.inicializarReporte();
         $('#modalCargando').modal('close');
         this.router.navigate(['/reportedia']);

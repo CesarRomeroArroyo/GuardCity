@@ -1,7 +1,7 @@
 
     <div style='display: block;top:0;left:0; position: relative'>
         
-        <agm-map [latitude]="ciudad.latitud" [longitude]="ciudad.longitud" [zoom]="13">
+        <agm-map [latitude]="reportes[0].latitud" [longitude]="reportes[0].longitud" [zoom]="12">
             <agm-marker [latitude]="obtenerFlotante(reporte.latitud)" [longitude]="obtenerFlotante(reporte.longitud)" *ngFor="let reporte of reportes">
                 <agm-info-window>{{reporte.tipo}}</agm-info-window>
             </agm-marker>

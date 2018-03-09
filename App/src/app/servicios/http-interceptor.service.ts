@@ -20,8 +20,8 @@ export class CatchInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     this.started = Date.now();
     const authorizationReq = this.setAuthHeader(req);
-    // const handledRequest = next.handle(authorizationReq);
-    const handledRequest = next.handle(req);
+    const handledRequest = next.handle(authorizationReq);
+    //const handledRequest = next.handle(req);
     const successCallback = this.interceptResponse.bind(this);
     const errorCallback = this.catchError.bind(this);
     const interceptionOperator = tap<HttpEvent<any>>(
@@ -32,7 +32,7 @@ export class CatchInterceptorService implements HttpInterceptor {
   }
 
   private setAuthHeader(req: HttpRequest<any>): HttpRequest<any> {
-    const headers = req.headers.set('T0k3n1', `z1nn14`);
+    const headers = req.headers.set('Authorization', `Basic OWMwNTdhN2UtMTIzYy00YWEyLWE5NTktZmMxZWJlZWViZDgz`);
     const authorizationReq = req.clone({ headers });
     return authorizationReq;
   }

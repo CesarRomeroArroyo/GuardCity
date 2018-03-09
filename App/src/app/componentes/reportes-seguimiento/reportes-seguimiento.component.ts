@@ -5,8 +5,10 @@ import { AppSettings } from '../../app.settings';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { LocalStorageService } from '../../servicios/local-storage.service';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Vibration } from '@ionic-native/vibration';
 
 declare var $: any;
+declare var Materialize: any;
 @Component({
   selector: 'app-reportes-seguimiento',
   templateUrl: './reportes-seguimiento.component.html',
@@ -19,7 +21,7 @@ export class ReportesSeguimientoComponent implements OnInit, AfterViewInit {
   idReporte: string;
   ciudad: any;
   constructor(private service: FirebaseService, private activatedRoute: ActivatedRoute, private appSetting: AppSettings,
-    private local: LocalStorageService, private geolocation: Geolocation) { }
+    private local: LocalStorageService, private geolocation: Geolocation, private vibration: Vibration) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -43,6 +45,14 @@ export class ReportesSeguimientoComponent implements OnInit, AfterViewInit {
   buscarSeguimiento() {
     this.service.obtenerDatosPorIdUnico('Seguimientos', this.idReporte).subscribe(
       result => {
+        let verificar = false;
+        if (this.seguimientos && this.seguimientos.length !== result.length) {
+          verificar = true;
+        }
+        if (verificar) {
+          Materialize.toast('Nuevo Reporte de Seguimiento', 3000, 'rounded');
+          this.vibration.vibrate(1000);
+        }
         this.seguimientos = result;
       }
     );
@@ -57,12 +67,16 @@ export class ReportesSeguimientoComponent implements OnInit, AfterViewInit {
         this.seguimiento.idunico = this.idReporte;
         this.service.guardarSeguimientoDatos('Seguimientos', this.seguimiento);
         this.buscarSeguimiento();
+        this.reiniciarSeguimiento();
       }).catch((error) => {
         alert('Existe un problema con sus GPS o no tiene instalado un modulo de GPS');
       });
     }
   }
 
+  reiniciarSeguimiento() {
+    this.seguimiento = {comentario: '', fecha: '', idunico: '', latitud: '', longitud: ''};
+  }
 
   abrirModalSeguimiento() {
     $('#modalSeguimiento').modal('open');

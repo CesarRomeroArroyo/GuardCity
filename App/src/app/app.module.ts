@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { APP_ROUTING } from './app.routes';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
@@ -19,13 +19,16 @@ import { ReporteHistoricoComponent } from './componentes/reporte-historico/repor
 import { ReportesDiaComponent } from './componentes/reportes-dia/reportes-dia.component';
 import { ReportesSeguimientoComponent } from './componentes/reportes-seguimiento/reportes-seguimiento.component';
 
+import { CatchInterceptorService } from './servicios/http-interceptor.service';
 import { FirebaseService } from './servicios/firebase.service';
 import { LocalStorageService } from './servicios/local-storage.service';
+import { OnesignalService } from './servicios/onesignal.service';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ZonasComponent } from './componentes/zonas/zonas.component';
 
 import { AgmCoreModule } from '@agm/core';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Vibration } from '@ionic-native/vibration';
 
 @NgModule({
   declarations: [
@@ -54,9 +57,16 @@ import { Geolocation } from '@ionic-native/geolocation';
   ],
   providers: [
     FirebaseService,
+    OnesignalService,
     LocalStorageService,
     AppSettings,
-    Geolocation
+    Geolocation,
+    Vibration,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CatchInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
