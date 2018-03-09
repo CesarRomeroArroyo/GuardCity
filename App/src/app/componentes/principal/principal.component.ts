@@ -3,6 +3,7 @@ import * as $ from 'jquery';
 import * as $$ from 'materialize-css';
 import { FirebaseService } from '../../servicios/firebase.service';
 import { AppSettings } from '../../app.settings';
+import { Geolocation } from '@ionic-native/geolocation';
 
 declare var $: any;
 
@@ -13,7 +14,7 @@ declare var $: any;
 })
 export class PrincipalComponent implements OnInit, AfterViewInit {
   numReportes: number;
-  constructor(private service: FirebaseService, private appSettings: AppSettings) {
+  constructor(private service: FirebaseService, private appSettings: AppSettings, private geolocation: Geolocation) {
     this.numReportes = 0;
   }
 
@@ -21,7 +22,12 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     this.service.obtenerDatosPorFecha('Reportes', this.appSettings.getCurrentDay()).subscribe(
       result => {
         this.numReportes = result.length;
-        console.log(this.numReportes);
+        this.geolocation.getCurrentPosition().then((resp) => {
+          // resp.coords.latitude
+          // resp.coords.longitude
+         }).catch((error) => {
+           console.log('Error getting location', error);
+         });
       }
     );
   }

@@ -25,6 +25,7 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ZonasComponent } from './componentes/zonas/zonas.component';
 
 import { AgmCoreModule } from '@agm/core';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { AgmCoreModule } from '@agm/core';
   providers: [
     FirebaseService,
     LocalStorageService,
-    AppSettings
+    AppSettings,
+    Geolocation
   ],
   bootstrap: [AppComponent]
 })

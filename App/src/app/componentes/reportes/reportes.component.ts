@@ -3,6 +3,7 @@ import { FirebaseService } from '../../servicios/firebase.service';
 import { AppSettings } from '../../app.settings';
 import { LocalStorageService } from '../../servicios/local-storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import * as $ from 'jquery';
 import * as $$ from 'materialize-css';
@@ -20,7 +21,7 @@ export class ReportesComponent implements OnInit, AfterViewInit {
   tipo_reporte: any = {texto: ''};
   constructor( private service: FirebaseService, private appSettings: AppSettings,
     private local: LocalStorageService, private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router, private geolocation: Geolocation) { }
 
   ngOnInit() {
     this.obtenerTipoReportes();
@@ -36,17 +37,21 @@ export class ReportesComponent implements OnInit, AfterViewInit {
 
   enviarReporte() {
     $('#modalCargando').modal('open');
-    const usuario = JSON.parse(this.local.obtener('GUARDCITY_USER'))[0];
-    console.log(usuario);
-    this.reporte.fecha = this.appSettings.getCurrentDay();
-    this.reporte.usuario = usuario.id;
-    this.service.guardarDatos('Reportes', this.reporte);
-    setTimeout(() => {
-      this.inicializarReporte();
-      $('#modalCargando').modal('close');
-      this.router.navigate(['/reportedia']);
-    }, 3000);
-    console.log(this.reporte);
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.reporte.latitud = resp.coords.latitude;
+      this.reporte.longitud = resp.coords.longitude;
+      const usuario = JSON.parse(this.local.obtener('GUARDCITY_USER'))[0];
+      this.reporte.fecha = this.appSettings.getCurrentDay();
+      this.reporte.usuario = usuario.id;
+      this.service.guardarDatos('Reportes', this.reporte);
+      setTimeout(() => {
+        this.inicializarReporte();
+        $('#modalCargando').modal('close');
+        this.router.navigate(['/reportedia']);
+      }, 3000);
+   }).catch((error) => {
+     alert('Existe un problema con sus GPS o no tiene instalado un modulo de GPS');
+   });
   }
 
   inicializarReporte() {
