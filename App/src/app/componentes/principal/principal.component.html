@@ -28,14 +28,14 @@
   </div>
 </nav>
 <div class="container">
-  <div class=" col s12 m12" style="text-align: center; color:white;">
+  <!--<div class=" col s12 m12" style="text-align: center; color:white;">
       
       <b> Bienvenido a GuardCity, un aplicativo con el que hacemos nuestra ciudad mas segura.</b>
       <br/>
       
-  </div>
+  </div>-->
   <div class=" col s12 m12" style="text-align: justify; color:white;">
-      <br/>
+      
       <b>GuardCity</b> es una aplicación que permite al usuario hacer parte de la mas grande comunidad de denuncia ciudadana 
       en conjunto con las autoridades de tu ciudad en tiempo real, con GuardCity hacemos nuestra ciudad mas segura.
       <br/>
@@ -46,7 +46,7 @@
 </div>
 <div class=" col s12 m12" style="text-align: justify;">
       <ul class="collection">
-          <li class="collection-item avatar" >
+          <li class="collection-item avatar" [routerLink]="['reportes']">
             <a style="color:black" [routerLink]="['reportes']">
               <i class="fa fa-bullhorn circle" style="background: #227595">
                 
@@ -56,7 +56,7 @@
               </p>
             </a>
           </li>
-          <li class="collection-item avatar" >
+          <li class="collection-item avatar" [routerLink]="['historicos']">
             <a style="color:black"  [routerLink]="['historicos']">
               <i class="fa fa-folder-open circle" style="background: #227595"></i>
               <span class="title">Historico de Mis Reportes</span>
@@ -64,7 +64,7 @@
               </p>
             </a>
           </li>
-          <li class="collection-item avatar" >
+          <li class="collection-item avatar" [routerLink]="['zonas']">
             <a style="color:black"  [routerLink]="['zonas']">
               <i class="fa fa-map circle" style="background: #227595"></i>
               <span class="title">Zonas en tu Ciudad</span>

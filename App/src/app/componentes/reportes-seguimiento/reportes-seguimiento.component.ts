@@ -6,6 +6,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import { LocalStorageService } from '../../servicios/local-storage.service';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Vibration } from '@ionic-native/vibration';
+import { OnesignalService } from '../../servicios/onesignal.service';
 
 declare var $: any;
 declare var Materialize: any;
@@ -20,8 +21,9 @@ export class ReportesSeguimientoComponent implements OnInit, AfterViewInit {
   seguimiento: any = {comentario: '', fecha: '', idunico: '', latitud: '', longitud: ''};
   idReporte: string;
   ciudad: any;
-  constructor(private service: FirebaseService, private activatedRoute: ActivatedRoute, private appSetting: AppSettings,
-    private local: LocalStorageService, private geolocation: Geolocation, private vibration: Vibration) { }
+  constructor(private service: FirebaseService, private activatedRoute: ActivatedRoute, private appSettings: AppSettings,
+    private local: LocalStorageService, private geolocation: Geolocation, private vibration: Vibration,
+    private oneSignal: OnesignalService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -36,7 +38,7 @@ export class ReportesSeguimientoComponent implements OnInit, AfterViewInit {
   buscarReporte() {
     this.service.obtenerDatosPorIdUnico('Reportes', this.idReporte).subscribe(
       result => {
-        this.reporte = result[0];
+        this.reporte = this.appSettings.getIconosMapasIndividual(result);
         this.buscarSeguimiento();
       }
     );
@@ -63,9 +65,10 @@ export class ReportesSeguimientoComponent implements OnInit, AfterViewInit {
       this.geolocation.getCurrentPosition().then((resp) => {
         this.seguimiento.latitud = resp.coords.latitude;
         this.seguimiento.longitud = resp.coords.longitude;
-        this.seguimiento.fecha = this.appSetting.getCurrentDay();
+        this.seguimiento.fecha = this.appSettings.getCurrentDay();
         this.seguimiento.idunico = this.idReporte;
         this.service.guardarSeguimientoDatos('Seguimientos', this.seguimiento);
+        this.oneSignal.enviarPush(`Se ha reportado un Seguimiento a ${this.reporte.tipo}, ${this.seguimiento.comentario}`);
         this.buscarSeguimiento();
         this.reiniciarSeguimiento();
       }).catch((error) => {

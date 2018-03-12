@@ -29,4 +29,252 @@ export class  AppSettings {
         }
         return `${dd}/${mm}/${yyyy}`;
     }
+
+    getIconosMapas(result) {
+        result.forEach(data => {
+            switch (data.tipo) {
+              case 'Homicidio':
+                  data['icon'] = {
+                      url: 'assets/img/iconRojo.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Robo':
+                  data['icon'] = {
+                      url: 'assets/img/iconRosado.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Consumo Venta de Drogas':
+                  data['icon'] = {
+                      url: 'assets/img/iconVerde.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Falta de Alumbrado':
+                  data['icon'] = {
+                      url: 'assets/img/iconRosadoFuerte.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Fuga de Agua':
+                  data['icon'] = {
+                      url: 'assets/img/iconAzulRey.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Fuga de Gas':
+                  data['icon'] = {
+                      url: 'assets/img/iconGris.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Objetos Perdidos':
+                  data['icon'] = {
+                      url: 'assets/img/iconNaranaja.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Otros':
+                  data['icon'] = {
+                      url: 'assets/img/iconAmarillo.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Vandalismo':
+                  data['icon'] = {
+                      url: 'assets/img/iconNaranajaOscuro.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Vehiculo Mal Parqueado':
+                  data['icon'] = {
+                      url: 'assets/img/iconVerdeClaro.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Violacion':
+                  data['icon'] = {
+                      url: 'assets/img/iconAzulCeleste.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Violencia Intrafamiliar':
+                  data['icon'] = {
+                      url: 'assets/img/iconNormal.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Zona Sospechosa':
+                  data['icon'] = {
+                      url: 'assets/img/iconMorado.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+            }
+          });
+          return result;
+    }
+
+    getIconosMapasIndividual(data) {
+            switch (data[0].tipo) {
+              case 'Homicidio':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconRojo.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Robo':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconRosado.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Consumo Venta de Drogas':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconVerde.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Falta de Alumbrado':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconRosadoFuerte.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Fuga de Agua':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconAzulRey.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Fuga de Gas':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconGris.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Objetos Perdidos':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconNaranaja.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Otros':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconNegro.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Vandalismo':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconNaranajaOscuro.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Vehiculo Mal Parqueado':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconVerdeClaro.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Violacion':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconAzulCeleste.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Violencia Intrafamiliar':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconNormal.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+                case 'Zona Sospechosa':
+                  data[0]['icon'] = {
+                      url: 'assets/img/iconMorado.png',
+                      scaledSize: {
+                        height: 45,
+                        width: 45
+                      }
+                    };
+                  break;
+            }
+          return data[0];
+    }
 }

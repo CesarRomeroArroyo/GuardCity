@@ -1,25 +1,99 @@
+<nav style="background: #2c8eb3">
+    <div class="side-navbar">
+      <div style="padding-bottom: 10px;  text-align: center"><a class="brand-logo">Reportes</a></div>
+      <a href="javascript:history.back(1)">
+          <i class="fa fa-arrow-left fa-2x" style="margin-left: 10px;"></i>
+      </a>
+      <a data-activates="mobile-demo" class="button-collapse right " (click)="abrirModal()">
+        <img src="assets/ico/ic_menu_white_18dp.png" alt=""/>
+    </a>
+    </div>
+</nav>
+<select class="browser-default" [(ngModel)]="tipo" name="tipo" (change)="obtenerReportesPorTipo()">
+    <option value="0"> Todos los reportes </option>
+    <option *ngFor="let c of tipo_reporte" [ngValue]="c.texto">{{c.texto}}</option>
+</select>
 
-    <div style='display: block;top:0;left:0; position: relative'>
-        
-        <agm-map [latitude]="reportes[0].latitud" [longitude]="reportes[0].longitud" [zoom]="12">
-            <agm-marker [latitude]="obtenerFlotante(reporte.latitud)" [longitude]="obtenerFlotante(reporte.longitud)" *ngFor="let reporte of reportes">
-                <agm-info-window>{{reporte.tipo}}</agm-info-window>
-            </agm-marker>
-          </agm-map>
+<agm-map [latitude]="reportes[0].latitud" [longitude]="reportes[0].longitud" [zoom]="12">
+    <agm-marker [latitude]="obtenerFlotante(miPosition.latitud)" [longitude]="obtenerFlotante(miPosition.longitud)" [iconUrl]="miPosition.icon">
+        <agm-info-window><b>{{usuario.nombre}}</b><br/>
+          {{usuario.ciudad}}, {{usuario.barrio}}<br/>
+          {{usuario.celular}}<br/> {{usuario.correo}}
+        </agm-info-window>
+    </agm-marker>
+    <agm-marker [latitude]="obtenerFlotante(reporte.latitud)" [longitude]="obtenerFlotante(reporte.longitud)" [iconUrl]="reporte.icon" *ngFor="let reporte of reportes">
+        <agm-info-window>{{reporte.tipo}}<br/> {{reporte.comentario}}</agm-info-window>
+    </agm-marker>
+</agm-map>
+
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+    <table class="striped">
+        <thead>
+          <tr>
+              <th style="width: 20%">Icono</th>
+              <th  style="width: 80%">Tipo</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+              <td><img src="assets/img/iconNegro.png" alt="" style="width: 30px; height: 30px"/></td>
+              <td>Usuario GuardCity</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconRojo.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Homicidio</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconRosado.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Robo</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconVerde.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Consumo Venta de Drogas</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconRosadoFuerte.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Falta de Alumbrado</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconAzulRey.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Fuga de Agua</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconGris.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Fuga de Gas</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconNaranaja.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Objetos Perdidos</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconAmarillo.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Otros</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconNaranajaOscuro.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Vandalismo</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconVerdeClaro.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Vehiculo Mal Parqueado</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconAzulCeleste.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Violacion</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconNormal.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Violencia Intrafamiliar</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/iconMorado.png" alt="" style="width: 30px; height: 30px"/></td>
+            <td>Zona Sospechosa</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div style='display: block;top:0;left:0;  position: absolute'>
-      <div class="side-navbar">
-        
-          <a href="javascript:history.back(1)">
-              <i class="fa fa-arrow-left fa-2x" style="margin-left: 10px;"></i>   
-              
-          </a>
-          <label style="font-size: 18px; color: #039be5;">    Zonas en tu Ciudad</label>
-              
-           
-      </div>
-    </div>
-    <select class="browser-default" [(ngModel)]="tipo" name="tipo" (change)="obtenerReportesPorTipo()">
-        <option value="0"> Todos los reportes </option>
-        <option *ngFor="let c of tipo_reporte" [ngValue]="c.texto">{{c.texto}}</option>
-    </select>
+  </div>

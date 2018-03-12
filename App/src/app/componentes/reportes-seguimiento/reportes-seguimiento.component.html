@@ -27,7 +27,7 @@
     <div class="card-content black-text">
       <b>Mapa de seguimiento</b>
       <agm-map [latitude]="reporte.latitud" [longitude]="reporte.longitud" [zoom]="13">
-          <agm-marker [latitude]="obtenerFlotante(reporte.latitud)" [longitude]="obtenerFlotante(reporte.longitud)" >
+          <agm-marker [latitude]="obtenerFlotante(reporte.latitud)" [longitude]="obtenerFlotante(reporte.longitud)" [iconUrl]="reporte.icon">
               <agm-info-window>
                 <b>{{reporte.tipo}}</b><br>
                 {{reporte.comentario}}

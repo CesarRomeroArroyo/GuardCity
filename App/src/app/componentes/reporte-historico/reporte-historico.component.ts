@@ -37,7 +37,7 @@ export class ReporteHistoricoComponent implements OnInit, AfterViewInit {
   buscarReporte() {
     this.service.obtenerDatosPorIdUnico('Reportes', this.idReporte).subscribe(
       result => {
-        this.reporte = result[0];
+        this.reporte = this.appSetting.getIconosMapasIndividual(result);
         this.buscarSeguimiento();
       }
     );

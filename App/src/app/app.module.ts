@@ -30,6 +30,7 @@ import { AgmCoreModule } from '@agm/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Vibration } from '@ionic-native/vibration';
 
+
 @NgModule({
   declarations: [
     AppComponent,

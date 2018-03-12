@@ -46,7 +46,7 @@ export class ReportesComponent implements OnInit, AfterViewInit {
       this.reporte.usuario = usuario.id;
       this.service.guardarDatos('Reportes', this.reporte);
       setTimeout(() => {
-        this.oneSignal.enviarPush(`Se ha reportado ${this.reporte.tipo}`);
+        this.oneSignal.enviarPush(`Se ha reportado ${this.reporte.tipo}, ${this.reporte.comentario}`);
         this.inicializarReporte();
         $('#modalCargando').modal('close');
         this.router.navigate(['/reportedia']);
