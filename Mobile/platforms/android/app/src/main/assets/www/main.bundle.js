@@ -268,6 +268,252 @@ var AppSettings = /** @class */ (function () {
         }
         return dd + "/" + mm + "/" + yyyy;
     };
+    AppSettings.prototype.getIconosMapas = function (result) {
+        result.forEach(function (data) {
+            switch (data.tipo) {
+                case 'Homicidio':
+                    data['icon'] = {
+                        url: 'assets/img/iconRojo.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Robo':
+                    data['icon'] = {
+                        url: 'assets/img/iconRosado.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Consumo Venta de Drogas':
+                    data['icon'] = {
+                        url: 'assets/img/iconVerde.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Falta de Alumbrado':
+                    data['icon'] = {
+                        url: 'assets/img/iconRosadoFuerte.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Fuga de Agua':
+                    data['icon'] = {
+                        url: 'assets/img/iconAzulRey.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Fuga de Gas':
+                    data['icon'] = {
+                        url: 'assets/img/iconGris.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Objetos Perdidos':
+                    data['icon'] = {
+                        url: 'assets/img/iconNaranaja.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Otros':
+                    data['icon'] = {
+                        url: 'assets/img/iconAmarillo.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Vandalismo':
+                    data['icon'] = {
+                        url: 'assets/img/iconNaranajaOscuro.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Vehiculo Mal Parqueado':
+                    data['icon'] = {
+                        url: 'assets/img/iconVerdeClaro.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Violacion':
+                    data['icon'] = {
+                        url: 'assets/img/iconAzulCeleste.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Violencia Intrafamiliar':
+                    data['icon'] = {
+                        url: 'assets/img/iconNormal.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+                case 'Zona Sospechosa':
+                    data['icon'] = {
+                        url: 'assets/img/iconMorado.png',
+                        scaledSize: {
+                            height: 45,
+                            width: 45
+                        }
+                    };
+                    break;
+            }
+        });
+        return result;
+    };
+    AppSettings.prototype.getIconosMapasIndividual = function (data) {
+        switch (data[0].tipo) {
+            case 'Homicidio':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconRojo.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Robo':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconRosado.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Consumo Venta de Drogas':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconVerde.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Falta de Alumbrado':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconRosadoFuerte.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Fuga de Agua':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconAzulRey.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Fuga de Gas':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconGris.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Objetos Perdidos':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconNaranaja.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Otros':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconNegro.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Vandalismo':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconNaranajaOscuro.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Vehiculo Mal Parqueado':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconVerdeClaro.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Violacion':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconAzulCeleste.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Violencia Intrafamiliar':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconNormal.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+            case 'Zona Sospechosa':
+                data[0]['icon'] = {
+                    url: 'assets/img/iconMorado.png',
+                    scaledSize: {
+                        height: 45,
+                        width: 45
+                    }
+                };
+                break;
+        }
+        return data[0];
+    };
     AppSettings = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])()
     ], AppSettings);
@@ -547,7 +793,7 @@ module.exports = ""
 /***/ "./src/app/componentes/principal/principal.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"z-depth-0\" style=\"height: auto; background: #2c8eb3\">\n  <div style='display: block;top:0;left:0;'>\n      <img src=\"assets/img/SeCivico.png\" alt=\"\" class='responsive-img'/>\n  </div> \n  <div class=\"side-navbar \" >                               \n      <div style='position:absolute;top:0;left:0;'>\n          <a href=\"#\" data-activates=\"mobile-demo\" class=\"button-collapse\">\n              <img src=\"assets/ico/ic_menu_white_18dp.png\" alt=\"\"/>\n          </a>\n          \n          <ul class=\"side-nav\" id=\"mobile-demo\" style=\"background: #062036; color:white\">\n              <br/>\n            <li class=\"\">\n              <a>\n                  <div class=\"row\">                   \n                      <div class=\"col s12\" style=\"vertical-align: central;color:white\" [routerLink]=\"['usuario']\"><i class=\"fa fa-user\"></i> Tu Usuario</div>\n                  </div>\n              </a>\n            </li>\n           \n          </ul>\n      </div>\n      <div style='position:absolute;top:5px;right:15px;'>\n          <a class=\"btn btn-floating pulse right red\" [routerLink]=\"['reportedia']\" *ngIf=\"this.numReportes>0\">\n              <i class=\"fa fa-exclamation\"></i>\n          </a>\n      </div>\n  </div>\n</nav>\n<div class=\"container\">\n  <div class=\" col s12 m12\" style=\"text-align: center; color:white;\">\n      \n      <b> Bienvenido a GuardCity, un aplicativo con el que hacemos nuestra ciudad mas segura.</b>\n      <br/>\n      \n  </div>\n  <div class=\" col s12 m12\" style=\"text-align: justify; color:white;\">\n      <br/>\n      <b>GuardCity</b> es una aplicación que permite al usuario hacer parte de la mas grande comunidad de denuncia ciudadana \n      en conjunto con las autoridades de tu ciudad en tiempo real, con GuardCity hacemos nuestra ciudad mas segura.\n      <br/>\n      <br/>\n      Con GuardCity puedes:\n  </div>\n  \n</div>\n<div class=\" col s12 m12\" style=\"text-align: justify;\">\n      <ul class=\"collection\">\n          <li class=\"collection-item avatar\" >\n            <a style=\"color:black\" [routerLink]=\"['reportes']\">\n              <i class=\"fa fa-bullhorn circle\" style=\"background: #227595\">\n                \n              </i>\n              <span class=\"title\">Reportes de Actividades</span>\n              <p>Reportar diferentes tipos de Actividades en tu ciudad\n              </p>\n            </a>\n          </li>\n          <li class=\"collection-item avatar\" >\n            <a style=\"color:black\"  [routerLink]=\"['historicos']\">\n              <i class=\"fa fa-folder-open circle\" style=\"background: #227595\"></i>\n              <span class=\"title\">Historico de Mis Reportes</span>\n              <p>Mira tus reportes y el seguimiento de los mismos\n              </p>\n            </a>\n          </li>\n          <li class=\"collection-item avatar\" >\n            <a style=\"color:black\"  [routerLink]=\"['zonas']\">\n              <i class=\"fa fa-map circle\" style=\"background: #227595\"></i>\n              <span class=\"title\">Zonas en tu Ciudad</span>\n              <p>Conoce cuales son las zonas seguras e inseguras de tu ciudad\n              </p>\n            </a>\n          </li>\n          <!--<li class=\"collection-item avatar\" >\n            <a style=\"color:black\"  [routerLink]=\"['reportes']\">\n              <i class=\"fa fa-map-marker circle\" style=\"background: #227595\"></i>\n              <span class=\"title\">Rutas Seguras</span>\n              <p>Programa tus rutas e informa si te desvias\n              </p>\n            </a>\n          </li>\n          <li class=\"collection-item avatar\" >\n            <a style=\"color:black\"  [routerLink]=\"['reportes']\">\n              <i class=\"fa fa-search circle\" style=\"background: #227595\"></i>\n              <span class=\"title\">Encuentrame</span>\n              <p>Conoce el lugar donde esta tu equipo\n              </p>\n            </a>\n          </li>-->\n        </ul>\n  </div>\n<div class=\"container\">\n  <div class=\" col s12 m12\" style=\"text-align: justify; color:white;\">\n       Todo esto en tiempo real, creando una comunidad colaborativa unica y sin precedentes,\n      <br/><b>GuardCity</b> hacemos una mejor ciudad\n      <br/>\n      <br/>\n  </div>                        \n</div>\n\n\n<footer class=\"page-footer\" style=\"background: #227595; color: white; text-align: justify\">\n<div class=\"container\"> \n    <div class=\"row\">\n        <div class=\"col l12\">\n           <i class=\"fa fa-exclamation-triangle\"></i> <b>GuardCity</b> no se hacen responsable de la informacion enviada por los usuarios, \n           se realizara un filtro de la informacion que se considere inapropiada. \n           Toda informacion es generada por los usuarios y es de su completa propiedad y responsabilidad.\n           <br/><b>Recuerda que aportar informacion real hace mas fuerte la comunidad.</b>\n        </div>\n        \n    </div>\n      \n</div>\n<div class=\"footer-copyright\">\n  <div class=\"container\">\n      2016 GuardCity\n  \n  </div>\n</div>\n</footer>\n\n  \n\n<input id=\"lon\" type=\"hidden\">\n<input id=\"lat\" type=\"hidden\">\n<input id=\"limit\" type=\"hidden\">\n"
+module.exports = "<nav class=\"z-depth-0\" style=\"height: auto; background: #2c8eb3\">\n  <div style='display: block;top:0;left:0;'>\n      <img src=\"assets/img/SeCivico.png\" alt=\"\" class='responsive-img'/>\n  </div> \n  <div class=\"side-navbar \" >                               \n      <div style='position:absolute;top:0;left:0;'>\n          <a href=\"#\" data-activates=\"mobile-demo\" class=\"button-collapse\">\n              <img src=\"assets/ico/ic_menu_white_18dp.png\" alt=\"\"/>\n          </a>\n          \n          <ul class=\"side-nav\" id=\"mobile-demo\" style=\"background: #062036; color:white\">\n              <br/>\n            <li class=\"\">\n              <a>\n                  <div class=\"row\">                   \n                      <div class=\"col s12\" style=\"vertical-align: central;color:white\" [routerLink]=\"['usuario']\"><i class=\"fa fa-user\"></i> Tu Usuario</div>\n                  </div>\n              </a>\n            </li>\n           \n          </ul>\n      </div>\n      <div style='position:absolute;top:5px;right:15px;'>\n          <a class=\"btn btn-floating pulse right red\" [routerLink]=\"['reportedia']\" *ngIf=\"this.numReportes>0\">\n              <i class=\"fa fa-exclamation\"></i>\n          </a>\n      </div>\n  </div>\n</nav>\n<div class=\"container\">\n  <!--<div class=\" col s12 m12\" style=\"text-align: center; color:white;\">\n      \n      <b> Bienvenido a GuardCity, un aplicativo con el que hacemos nuestra ciudad mas segura.</b>\n      <br/>\n      \n  </div>-->\n  <div class=\" col s12 m12\" style=\"text-align: justify; color:white;\">\n      \n      <b>GuardCity</b> es una aplicación que permite al usuario hacer parte de la mas grande comunidad de denuncia ciudadana \n      en conjunto con las autoridades de tu ciudad en tiempo real, con GuardCity hacemos nuestra ciudad mas segura.\n      <br/>\n      <br/>\n      Con GuardCity puedes:\n  </div>\n  \n</div>\n<div class=\" col s12 m12\" style=\"text-align: justify;\">\n      <ul class=\"collection\">\n          <li class=\"collection-item avatar\" [routerLink]=\"['reportes']\">\n            <a style=\"color:black\" [routerLink]=\"['reportes']\">\n              <i class=\"fa fa-bullhorn circle\" style=\"background: #227595\">\n                \n              </i>\n              <span class=\"title\">Reportes de Actividades</span>\n              <p>Reportar diferentes tipos de Actividades en tu ciudad\n              </p>\n            </a>\n          </li>\n          <li class=\"collection-item avatar\" [routerLink]=\"['historicos']\">\n            <a style=\"color:black\"  [routerLink]=\"['historicos']\">\n              <i class=\"fa fa-folder-open circle\" style=\"background: #227595\"></i>\n              <span class=\"title\">Historico de Mis Reportes</span>\n              <p>Mira tus reportes y el seguimiento de los mismos\n              </p>\n            </a>\n          </li>\n          <li class=\"collection-item avatar\" [routerLink]=\"['zonas']\">\n            <a style=\"color:black\"  [routerLink]=\"['zonas']\">\n              <i class=\"fa fa-map circle\" style=\"background: #227595\"></i>\n              <span class=\"title\">Zonas en tu Ciudad</span>\n              <p>Conoce cuales son las zonas seguras e inseguras de tu ciudad\n              </p>\n            </a>\n          </li>\n          <!--<li class=\"collection-item avatar\" >\n            <a style=\"color:black\"  [routerLink]=\"['reportes']\">\n              <i class=\"fa fa-map-marker circle\" style=\"background: #227595\"></i>\n              <span class=\"title\">Rutas Seguras</span>\n              <p>Programa tus rutas e informa si te desvias\n              </p>\n            </a>\n          </li>\n          <li class=\"collection-item avatar\" >\n            <a style=\"color:black\"  [routerLink]=\"['reportes']\">\n              <i class=\"fa fa-search circle\" style=\"background: #227595\"></i>\n              <span class=\"title\">Encuentrame</span>\n              <p>Conoce el lugar donde esta tu equipo\n              </p>\n            </a>\n          </li>-->\n        </ul>\n  </div>\n<div class=\"container\">\n  <div class=\" col s12 m12\" style=\"text-align: justify; color:white;\">\n       Todo esto en tiempo real, creando una comunidad colaborativa unica y sin precedentes,\n      <br/><b>GuardCity</b> hacemos una mejor ciudad\n      <br/>\n      <br/>\n  </div>                        \n</div>\n\n\n<footer class=\"page-footer\" style=\"background: #227595; color: white; text-align: justify\">\n<div class=\"container\"> \n    <div class=\"row\">\n        <div class=\"col l12\">\n           <i class=\"fa fa-exclamation-triangle\"></i> <b>GuardCity</b> no se hacen responsable de la informacion enviada por los usuarios, \n           se realizara un filtro de la informacion que se considere inapropiada. \n           Toda informacion es generada por los usuarios y es de su completa propiedad y responsabilidad.\n           <br/><b>Recuerda que aportar informacion real hace mas fuerte la comunidad.</b>\n        </div>\n        \n    </div>\n      \n</div>\n<div class=\"footer-copyright\">\n  <div class=\"container\">\n      2016 GuardCity\n  \n  </div>\n</div>\n</footer>\n\n  \n\n<input id=\"lon\" type=\"hidden\">\n<input id=\"lat\" type=\"hidden\">\n<input id=\"limit\" type=\"hidden\">\n"
 
 /***/ }),
 
@@ -637,7 +883,7 @@ module.exports = ".modal.bottom-sheet {\r\n    height: 90% !important;\r\n    ma
 /***/ "./src/app/componentes/reporte-historico/reporte-historico.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"nav-extended\" style=\"background: #2c8eb3\">\n        <div class=\"side-navbar\">\n          <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reporte</a></div>\n          <a href=\"javascript:history.back(1)\">\n              <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n          </a>\n        </div>\n        <div class=\"nav-content center\">\n            \n            <i class=\"fa fa-bullhorn fa-4x\" ></i><br/>\n            <b style=\"font-size: 25px\">{{reporte.tipo}}</b> <br/>\n            <div class=\"nav-content right\">\n                <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}</span>\n            </div>\n            <br/>\n            <br/>\n        </div>\n        \n    </nav>\n    <div class=\"card z-depth-2\">\n      <div class=\"card-content black-text\">\n          <b>Mas Informacion:</b> <br/>\n          {{reporte.comentario}}\n      </div>\n    </div>\n    \n\n    <div class=\"card z-depth-2\">\n            <div class=\"card-content black-text\">\n              <b>Mapa de seguimiento</b>\n              <agm-map [latitude]=\"reporte.latitud\" [longitude]=\"reporte.longitud\" [zoom]=\"13\">\n                  <agm-marker [latitude]=\"obtenerFlotante(reporte.latitud)\" [longitude]=\"obtenerFlotante(reporte.longitud)\" >\n                      <agm-info-window>\n                        <b>{{reporte.tipo}}</b><br>\n                        {{reporte.comentario}}\n                      </agm-info-window>\n                  </agm-marker>\n                  <agm-marker [latitude]=\"obtenerFlotante(repo.latitud)\" [longitude]=\"obtenerFlotante(repo.longitud)\" *ngFor=\"let repo of seguimientos\">\n                      <agm-info-window>{{repo.comentario}}</agm-info-window>\n                  </agm-marker>\n              </agm-map>\n            </div>\n        </div>\n\n    <div class=\"card z-depth-2\" *ngFor=\"let seguimiento of seguimientos\">\n      <div class=\"card-content black-text\">\n          {{seguimiento.comentario}} <br/>\n          <div class=\"nav-content right\">\n              <span class=\"badge red\" style=\"color:white\">{{seguimiento.fecha}}</span>\n          </div>\n      </div>\n    </div>\n"
+module.exports = "<nav class=\"nav-extended\" style=\"background: #2c8eb3\">\n        <div class=\"side-navbar\">\n          <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reporte</a></div>\n          <a href=\"javascript:history.back(1)\">\n              <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n          </a>\n        </div>\n        <div class=\"nav-content center\">\n            \n            <i class=\"fa fa-bullhorn fa-4x\" ></i><br/>\n            <b style=\"font-size: 25px\">{{reporte.tipo}}</b> <br/>\n            <div class=\"nav-content right\">\n                <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}</span>\n            </div>\n            <br/>\n            <br/>\n        </div>\n        \n    </nav>\n    <div class=\"card z-depth-2\">\n      <div class=\"card-content black-text\">\n          <b>Mas Informacion:</b> <br/>\n          {{reporte.comentario}}\n      </div>\n    </div>\n    \n\n    <div class=\"card z-depth-2\">\n            <div class=\"card-content black-text\">\n              <b>Mapa de seguimiento</b>\n              <agm-map [latitude]=\"reporte.latitud\" [longitude]=\"reporte.longitud\" [zoom]=\"13\">\n                  <agm-marker [latitude]=\"obtenerFlotante(reporte.latitud)\" [longitude]=\"obtenerFlotante(reporte.longitud)\" [iconUrl]=\"reporte.icon\">\n                      <agm-info-window>\n                        <b>{{reporte.tipo}}</b><br>\n                        {{reporte.comentario}}\n                      </agm-info-window>\n                  </agm-marker>\n                  <agm-marker [latitude]=\"obtenerFlotante(repo.latitud)\" [longitude]=\"obtenerFlotante(repo.longitud)\" *ngFor=\"let repo of seguimientos\">\n                      <agm-info-window>{{repo.comentario}}</agm-info-window>\n                  </agm-marker>\n              </agm-map>\n            </div>\n        </div>\n\n    <div class=\"card z-depth-2\" *ngFor=\"let seguimiento of seguimientos\">\n      <div class=\"card-content black-text\">\n          {{seguimiento.comentario}} <br/>\n          <div class=\"nav-content right\">\n              <span class=\"badge red\" style=\"color:white\">{{seguimiento.fecha}}</span>\n          </div>\n      </div>\n    </div>\n"
 
 /***/ }),
 
@@ -687,7 +933,7 @@ var ReporteHistoricoComponent = /** @class */ (function () {
     ReporteHistoricoComponent.prototype.buscarReporte = function () {
         var _this = this;
         this.service.obtenerDatosPorIdUnico('Reportes', this.idReporte).subscribe(function (result) {
-            _this.reporte = result[0];
+            _this.reporte = _this.appSetting.getIconosMapasIndividual(result);
             _this.buscarSeguimiento();
         });
     };
@@ -822,7 +1068,7 @@ module.exports = ".modal.bottom-sheet {\r\n    height: 90% !important;\r\n    ma
 /***/ "./src/app/componentes/reportes-seguimiento/reportes-seguimiento.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"nav-extended\" style=\"background: #2c8eb3\">\n    <div class=\"side-navbar\">\n      <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reporte</a></div>\n      <a href=\"javascript:history.back(1)\">\n          <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n      </a>\n    </div>\n    <div class=\"nav-content center\">\n        \n        <i class=\"fa fa-bullhorn fa-4x\" ></i><br/>\n        <b style=\"font-size: 25px\">{{reporte.tipo}}</b> <br/>\n        <div class=\"nav-content right\">\n            <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}</span>\n        </div>\n        <br/>\n        <br/>\n    </div>\n    \n</nav>\n<div class=\"card z-depth-2\">\n  <div class=\"card-content black-text\">\n      <b>Mas Informacion:</b> <br/>\n      {{reporte.comentario}}\n  </div>\n</div>\n<div class=\"card z-depth-2\">\n    <div class=\"card-content black-text\">\n      <b>Mapa de seguimiento</b>\n      <agm-map [latitude]=\"reporte.latitud\" [longitude]=\"reporte.longitud\" [zoom]=\"13\">\n          <agm-marker [latitude]=\"obtenerFlotante(reporte.latitud)\" [longitude]=\"obtenerFlotante(reporte.longitud)\" >\n              <agm-info-window>\n                <b>{{reporte.tipo}}</b><br>\n                {{reporte.comentario}}\n              </agm-info-window>\n          </agm-marker>\n          <agm-marker [latitude]=\"obtenerFlotante(repo.latitud)\" [longitude]=\"obtenerFlotante(repo.longitud)\" *ngFor=\"let repo of seguimientos\">\n              <agm-info-window>{{repo.comentario}}</agm-info-window>\n          </agm-marker>\n      </agm-map>\n    </div>\n</div>\n<div class=\"card z-depth-2\" *ngFor=\"let seguimiento of seguimientos\">\n  <div class=\"card-content black-text\">\n      {{seguimiento.comentario}} <br/>\n      <div class=\"nav-content right\">\n          <span class=\"badge red\" style=\"color:white\">{{seguimiento.fecha}}</span>\n      </div>\n  </div>\n</div>\n\n<div class=\"col s12 right\">\n    <div class=\"fixed-action-btn\">\n        <a class=\"btn-floating btn-large \" style=\"background-color: #282f39\" (click)=\"abrirModalSeguimiento()\">\n          <i class=\"fa fa-plus\"></i>\n        </a>\n      </div>\n</div>\n\n\n\n<div id=\"modalSeguimiento\" class=\"modal bottom-sheet\" style=\"\">\n  <div class=\"modal-content\">\n    <p>Añadir Seguimiento</p>\n    <div class=\"input-field col s12\">\n        <textarea id=\"descripcion\" class=\"materialize-textarea\" [(ngModel)]=\"seguimiento.comentario\" placeholder=\"Indique Informacion como << moto grande de color X y placas XXX >> o << Sujeto sospechoso con camisa de color verde >>\"></textarea>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <a class=\"modal-action modal-close waves-effect waves-green btn-flat\" (click)=\"registrarSeguimiento()\" >Aceptar</a>\n  </div>\n</div>\n        "
+module.exports = "<nav class=\"nav-extended\" style=\"background: #2c8eb3\">\n    <div class=\"side-navbar\">\n      <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reporte</a></div>\n      <a href=\"javascript:history.back(1)\">\n          <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n      </a>\n    </div>\n    <div class=\"nav-content center\">\n        \n        <i class=\"fa fa-bullhorn fa-4x\" ></i><br/>\n        <b style=\"font-size: 25px\">{{reporte.tipo}}</b> <br/>\n        <div class=\"nav-content right\">\n            <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}</span>\n        </div>\n        <br/>\n        <br/>\n    </div>\n    \n</nav>\n<div class=\"card z-depth-2\">\n  <div class=\"card-content black-text\">\n      <b>Mas Informacion:</b> <br/>\n      {{reporte.comentario}}\n  </div>\n</div>\n<div class=\"card z-depth-2\">\n    <div class=\"card-content black-text\">\n      <b>Mapa de seguimiento</b>\n      <agm-map [latitude]=\"reporte.latitud\" [longitude]=\"reporte.longitud\" [zoom]=\"13\">\n          <agm-marker [latitude]=\"obtenerFlotante(reporte.latitud)\" [longitude]=\"obtenerFlotante(reporte.longitud)\" [iconUrl]=\"reporte.icon\">\n              <agm-info-window>\n                <b>{{reporte.tipo}}</b><br>\n                {{reporte.comentario}}\n              </agm-info-window>\n          </agm-marker>\n          <agm-marker [latitude]=\"obtenerFlotante(repo.latitud)\" [longitude]=\"obtenerFlotante(repo.longitud)\" *ngFor=\"let repo of seguimientos\">\n              <agm-info-window>{{repo.comentario}}</agm-info-window>\n          </agm-marker>\n      </agm-map>\n    </div>\n</div>\n<div class=\"card z-depth-2\" *ngFor=\"let seguimiento of seguimientos\">\n  <div class=\"card-content black-text\">\n      {{seguimiento.comentario}} <br/>\n      <div class=\"nav-content right\">\n          <span class=\"badge red\" style=\"color:white\">{{seguimiento.fecha}}</span>\n      </div>\n  </div>\n</div>\n\n<div class=\"col s12 right\">\n    <div class=\"fixed-action-btn\">\n        <a class=\"btn-floating btn-large \" style=\"background-color: #282f39\" (click)=\"abrirModalSeguimiento()\">\n          <i class=\"fa fa-plus\"></i>\n        </a>\n      </div>\n</div>\n\n\n\n<div id=\"modalSeguimiento\" class=\"modal bottom-sheet\" style=\"\">\n  <div class=\"modal-content\">\n    <p>Añadir Seguimiento</p>\n    <div class=\"input-field col s12\">\n        <textarea id=\"descripcion\" class=\"materialize-textarea\" [(ngModel)]=\"seguimiento.comentario\" placeholder=\"Indique Informacion como << moto grande de color X y placas XXX >> o << Sujeto sospechoso con camisa de color verde >>\"></textarea>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <a class=\"modal-action modal-close waves-effect waves-green btn-flat\" (click)=\"registrarSeguimiento()\" >Aceptar</a>\n  </div>\n</div>\n        "
 
 /***/ }),
 
@@ -838,6 +1084,7 @@ module.exports = "<nav class=\"nav-extended\" style=\"background: #2c8eb3\">\n  
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servicios_local_storage_service__ = __webpack_require__("./src/app/servicios/local-storage.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__("./node_modules/@ionic-native/geolocation/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_vibration__ = __webpack_require__("./node_modules/@ionic-native/vibration/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__servicios_onesignal_service__ = __webpack_require__("./src/app/servicios/onesignal.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -854,14 +1101,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ReportesSeguimientoComponent = /** @class */ (function () {
-    function ReportesSeguimientoComponent(service, activatedRoute, appSetting, local, geolocation, vibration) {
+    function ReportesSeguimientoComponent(service, activatedRoute, appSettings, local, geolocation, vibration, oneSignal) {
         this.service = service;
         this.activatedRoute = activatedRoute;
-        this.appSetting = appSetting;
+        this.appSettings = appSettings;
         this.local = local;
         this.geolocation = geolocation;
         this.vibration = vibration;
+        this.oneSignal = oneSignal;
         this.seguimiento = { comentario: '', fecha: '', idunico: '', latitud: '', longitud: '' };
     }
     ReportesSeguimientoComponent.prototype.ngOnInit = function () {
@@ -877,7 +1126,7 @@ var ReportesSeguimientoComponent = /** @class */ (function () {
     ReportesSeguimientoComponent.prototype.buscarReporte = function () {
         var _this = this;
         this.service.obtenerDatosPorIdUnico('Reportes', this.idReporte).subscribe(function (result) {
-            _this.reporte = result[0];
+            _this.reporte = _this.appSettings.getIconosMapasIndividual(result);
             _this.buscarSeguimiento();
         });
     };
@@ -901,9 +1150,10 @@ var ReportesSeguimientoComponent = /** @class */ (function () {
             this.geolocation.getCurrentPosition().then(function (resp) {
                 _this.seguimiento.latitud = resp.coords.latitude;
                 _this.seguimiento.longitud = resp.coords.longitude;
-                _this.seguimiento.fecha = _this.appSetting.getCurrentDay();
+                _this.seguimiento.fecha = _this.appSettings.getCurrentDay();
                 _this.seguimiento.idunico = _this.idReporte;
                 _this.service.guardarSeguimientoDatos('Seguimientos', _this.seguimiento);
+                _this.oneSignal.enviarPush("Se ha reportado un Seguimiento a " + _this.reporte.tipo + ", " + _this.seguimiento.comentario);
                 _this.buscarSeguimiento();
                 _this.reiniciarSeguimiento();
             }).catch(function (error) {
@@ -940,7 +1190,8 @@ var ReportesSeguimientoComponent = /** @class */ (function () {
             styles: [__webpack_require__("./src/app/componentes/reportes-seguimiento/reportes-seguimiento.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__servicios_firebase_service__["a" /* FirebaseService */], __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__app_settings__["a" /* AppSettings */],
-            __WEBPACK_IMPORTED_MODULE_4__servicios_local_storage_service__["a" /* LocalStorageService */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_vibration__["a" /* Vibration */]])
+            __WEBPACK_IMPORTED_MODULE_4__servicios_local_storage_service__["a" /* LocalStorageService */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_vibration__["a" /* Vibration */],
+            __WEBPACK_IMPORTED_MODULE_7__servicios_onesignal_service__["a" /* OnesignalService */]])
     ], ReportesSeguimientoComponent);
     return ReportesSeguimientoComponent;
 }());
@@ -1023,7 +1274,7 @@ var ReportesComponent = /** @class */ (function () {
             _this.reporte.usuario = usuario.id;
             _this.service.guardarDatos('Reportes', _this.reporte);
             setTimeout(function () {
-                _this.oneSignal.enviarPush("Se ha reportado " + _this.reporte.tipo);
+                _this.oneSignal.enviarPush("Se ha reportado " + _this.reporte.tipo + ", " + _this.reporte.comentario);
                 _this.inicializarReporte();
                 $('#modalCargando').modal('close');
                 _this.router.navigate(['/reportedia']);
@@ -1168,14 +1419,14 @@ var UsuarioComponent = /** @class */ (function () {
 /***/ "./src/app/componentes/zonas/zonas.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "agm-map {\r\n  height: 95vh;\r\n  }"
+module.exports = "agm-map {\r\n  height: 95vh;\r\n  width: 100%;\r\n  }\r\n\r\n  .modal.bottom-sheet {\r\n    height: 90% !important;\r\n    max-height: 90% !important;\r\n\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/componentes/zonas/zonas.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n    <div style='display: block;top:0;left:0; position: relative'>\n        \n        <agm-map [latitude]=\"reportes[0].latitud\" [longitude]=\"reportes[0].longitud\" [zoom]=\"12\">\n            <agm-marker [latitude]=\"obtenerFlotante(reporte.latitud)\" [longitude]=\"obtenerFlotante(reporte.longitud)\" *ngFor=\"let reporte of reportes\">\n                <agm-info-window>{{reporte.tipo}}</agm-info-window>\n            </agm-marker>\n          </agm-map>\n    </div>\n    <div style='display: block;top:0;left:0;  position: absolute'>\n      <div class=\"side-navbar\">\n        \n          <a href=\"javascript:history.back(1)\">\n              <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>   \n              \n          </a>\n          <label style=\"font-size: 18px; color: #039be5;\">    Zonas en tu Ciudad</label>\n              \n           \n      </div>\n    </div>\n    <select class=\"browser-default\" [(ngModel)]=\"tipo\" name=\"tipo\" (change)=\"obtenerReportesPorTipo()\">\n        <option value=\"0\"> Todos los reportes </option>\n        <option *ngFor=\"let c of tipo_reporte\" [ngValue]=\"c.texto\">{{c.texto}}</option>\n    </select>"
+module.exports = "<nav style=\"background: #2c8eb3\">\n    <div class=\"side-navbar\">\n      <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reportes</a></div>\n      <a href=\"javascript:history.back(1)\">\n          <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n      </a>\n      <a data-activates=\"mobile-demo\" class=\"button-collapse right \" (click)=\"abrirModal()\">\n        <img src=\"assets/ico/ic_menu_white_18dp.png\" alt=\"\"/>\n    </a>\n    </div>\n</nav>\n<select class=\"browser-default\" [(ngModel)]=\"tipo\" name=\"tipo\" (change)=\"obtenerReportesPorTipo()\">\n    <option value=\"0\"> Todos los reportes </option>\n    <option *ngFor=\"let c of tipo_reporte\" [ngValue]=\"c.texto\">{{c.texto}}</option>\n</select>\n\n<agm-map [latitude]=\"reportes[0].latitud\" [longitude]=\"reportes[0].longitud\" [zoom]=\"12\">\n    <agm-marker [latitude]=\"obtenerFlotante(miPosition.latitud)\" [longitude]=\"obtenerFlotante(miPosition.longitud)\" [iconUrl]=\"miPosition.icon\">\n        <agm-info-window><b>{{usuario.nombre}}</b><br/>\n          {{usuario.ciudad}}, {{usuario.barrio}}<br/>\n          {{usuario.celular}}<br/> {{usuario.correo}}\n        </agm-info-window>\n    </agm-marker>\n    <agm-marker [latitude]=\"obtenerFlotante(reporte.latitud)\" [longitude]=\"obtenerFlotante(reporte.longitud)\" [iconUrl]=\"reporte.icon\" *ngFor=\"let reporte of reportes\">\n        <agm-info-window>{{reporte.tipo}}<br/> {{reporte.comentario}}</agm-info-window>\n    </agm-marker>\n</agm-map>\n\n<div id=\"modal1\" class=\"modal bottom-sheet\">\n    <div class=\"modal-content\">\n    <table class=\"striped\">\n        <thead>\n          <tr>\n              <th style=\"width: 20%\">Icono</th>\n              <th  style=\"width: 80%\">Tipo</th>\n          </tr>\n        </thead>\n\n        <tbody>\n          <tr>\n              <td><img src=\"assets/img/iconNegro.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n              <td>Usuario GuardCity</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconRojo.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Homicidio</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconRosado.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Robo</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconVerde.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Consumo Venta de Drogas</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconRosadoFuerte.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Falta de Alumbrado</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconAzulRey.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Fuga de Agua</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconGris.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Fuga de Gas</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconNaranaja.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Objetos Perdidos</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconAmarillo.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Otros</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconNaranajaOscuro.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Vandalismo</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconVerdeClaro.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Vehiculo Mal Parqueado</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconAzulCeleste.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Violacion</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconNormal.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Violencia Intrafamiliar</td>\n          </tr>\n          <tr>\n            <td><img src=\"assets/img/iconMorado.png\" alt=\"\" style=\"width: 30px; height: 30px\"/></td>\n            <td>Zona Sospechosa</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -1187,6 +1438,8 @@ module.exports = "\n    <div style='display: block;top:0;left:0; position: relat
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__servicios_firebase_service__ = __webpack_require__("./src/app/servicios/firebase.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__servicios_local_storage_service__ = __webpack_require__("./src/app/servicios/local-storage.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_settings__ = __webpack_require__("./src/app/app.settings.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__("./node_modules/@ionic-native/geolocation/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1199,24 +1452,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var ZonasComponent = /** @class */ (function () {
-    function ZonasComponent(service, local) {
+    function ZonasComponent(service, local, appSettings, geolocation) {
         this.service = service;
         this.local = local;
+        this.appSettings = appSettings;
+        this.geolocation = geolocation;
         this.tipo_reporte = { texto: '' };
+        this.miPosition = { longitud: '', latitud: '', icon: {} };
         this.tipo = '0';
     }
     ZonasComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.obtenerTodosReportes();
         this.ciudad = JSON.parse(this.local.obtener('GUARDCITY_CITY'))[0];
+        this.usuario = JSON.parse(this.local.obtener('GUARDCITY_USER'))[0];
         this.ciudad.latitud = parseFloat(this.ciudad.latitud);
         this.ciudad.longitud = parseFloat(this.ciudad.longitud);
         this.obtenerTipoReportes();
+        this.subscription = this.geolocation.watchPosition()
+            .filter(function (p) { return p.coords !== undefined; })
+            .subscribe(function (position) {
+            console.log(position.coords.longitude + ' ' + position.coords.latitude);
+            _this.miPosition.longitud = position.coords.longitude;
+            _this.miPosition.latitud = position.coords.latitude;
+            _this.miPosition.icon = {
+                url: 'assets/img/iconNegro.png',
+                scaledSize: {
+                    height: 50,
+                    width: 50
+                }
+            };
+        });
+    };
+    ZonasComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
     };
     ZonasComponent.prototype.obtenerTodosReportes = function () {
         var _this = this;
         this.service.obtenerDatos('Reportes').subscribe(function (result) {
-            _this.reportes = result;
+            _this.reportes = _this.appSettings.getIconosMapas(result);
+            console.log(_this.reportes);
         });
     };
     ZonasComponent.prototype.obtenerReportesPorTipo = function () {
@@ -1226,7 +1504,8 @@ var ZonasComponent = /** @class */ (function () {
         }
         else {
             this.service.obtenerDatosPorTipo(this.tipo).subscribe(function (result) {
-                _this.reportes = result;
+                _this.reportes = _this.appSettings.getIconosMapas(result);
+                console.log(_this.reportes);
             });
         }
     };
@@ -1239,13 +1518,30 @@ var ZonasComponent = /** @class */ (function () {
     ZonasComponent.prototype.obtenerFlotante = function (valor) {
         return parseFloat(valor);
     };
+    ZonasComponent.prototype.ngAfterViewInit = function () {
+        $('.modal').modal({
+            dismissible: true,
+            opacity: .5,
+            inDuration: 300,
+            outDuration: 200,
+            startingTop: '4%',
+            endingTop: '80%',
+            ready: function (modal, trigger) {
+            },
+            complete: function () { } // Callback for Modal close
+        });
+    };
+    ZonasComponent.prototype.abrirModal = function () {
+        $('#modal1').modal('open');
+    };
     ZonasComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-zonas',
             template: __webpack_require__("./src/app/componentes/zonas/zonas.component.html"),
             styles: [__webpack_require__("./src/app/componentes/zonas/zonas.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__servicios_firebase_service__["a" /* FirebaseService */], __WEBPACK_IMPORTED_MODULE_2__servicios_local_storage_service__["a" /* LocalStorageService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__servicios_firebase_service__["a" /* FirebaseService */], __WEBPACK_IMPORTED_MODULE_2__servicios_local_storage_service__["a" /* LocalStorageService */], __WEBPACK_IMPORTED_MODULE_3__app_settings__["a" /* AppSettings */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__["a" /* Geolocation */]])
     ], ZonasComponent);
     return ZonasComponent;
 }());
