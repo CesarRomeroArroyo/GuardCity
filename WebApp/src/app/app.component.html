@@ -1,0 +1,4 @@
+
+  <app-inicio *ngIf="!seguimiento" (mostrarSeguimiento)="mostrarSeguimiento($event)"></app-inicio>
+  <app-seguimiento *ngIf="seguimiento" (ocultarSeguimiento)="ocultarSeguimiento($event)" [idSeguimiento]="idSeguimiento"></app-seguimiento>
+

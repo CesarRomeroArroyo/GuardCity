@@ -1,0 +1,52 @@
+<nav class="nav-extended" style="background: #2c8eb3">
+    <div class="side-navbar">
+      <div style="padding-bottom: 10px;  text-align: center"><a class="brand-logo"></a></div>
+      <a (click)="ocultarSeguimientos()">
+          <i class="fa fa-arrow-left fa-2x" style="margin-left: 10px;"></i>
+      </a>
+    </div>
+    <div class="nav-content center">
+        
+        <i class="fa fa-bullhorn fa-4x" ></i><br/>
+        <b style="font-size: 25px">{{reporte.tipo}}</b> <br/>
+        <div class="nav-content right">
+            <span class="badge red" style="color:white">{{reporte.fecha}}</span>
+        </div>
+        <br/>
+        <br/>
+    </div>
+    
+</nav>
+<div class="card z-depth-2">
+  <div class="card-content black-text">
+      <b>Mas Informacion:</b> <br/>
+      {{reporte.comentario}}
+  </div>
+</div>
+<div class="card z-depth-2">
+    <div class="card-content black-text">
+      <b>Mapa de seguimiento</b>
+      <agm-map [latitude]="reporte.latitud" [longitude]="reporte.longitud" [zoom]="13">
+          <agm-marker [latitude]="obtenerFlotante(reporte.latitud)" [longitude]="obtenerFlotante(reporte.longitud)" [iconUrl]="reporte.icon">
+              <agm-info-window>
+                <b>{{reporte.tipo}}</b><br>
+                {{reporte.comentario}}
+              </agm-info-window>
+          </agm-marker>
+          <agm-marker [latitude]="obtenerFlotante(repo.latitud)" [longitude]="obtenerFlotante(repo.longitud)" *ngFor="let repo of seguimientos">
+              <agm-info-window>{{repo.comentario}}</agm-info-window>
+          </agm-marker>
+      </agm-map>
+    </div>
+</div>
+<div class="card z-depth-2" *ngFor="let seguimiento of seguimientos">
+  <div class="card-content black-text">
+      {{seguimiento.comentario}} <br/>
+      <div class="nav-content right">
+          <span class="badge red" style="color:white">{{seguimiento.fecha}}</span>
+      </div>
+  </div>
+</div>
+
+
+

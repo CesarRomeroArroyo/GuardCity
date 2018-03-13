@@ -1,0 +1,38 @@
+<main>
+  <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a></div>
+  <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0px);background-color: #2d8db3;">
+    <li><img src="assets/guardCity.png" style="width: 300px; height: 180%"></li>
+    <li>
+        Tipos de Reportes
+        <select class="browser-default" [(ngModel)]="tipo" name="tipo" (change)="obtenerReportesPorTipo()">
+            <option value="0"> Todos los reportes </option>
+            <option *ngFor="let c of tipo_reporte" [ngValue]="c.texto">{{c.texto}}</option>
+        </select>
+    </li>
+    
+  </ul>
+
+
+    <agm-map [latitude]="reportes[0].latitud" [longitude]="reportes[0].longitud" [zoom]="12">
+        <agm-marker [latitude]="obtenerFlotante(reporte.latitud)" [longitude]="obtenerFlotante(reporte.longitud)" [iconUrl]="reporte.icon" *ngFor="let reporte of reportes">
+            <agm-info-window><b>{{reporte.tipo}}</b><br/> 
+              {{reporte.comentario}}<br/><br/>
+              <table>
+                <tr>
+                  <td>
+                      <button class="btn waves-effect waves-light" type="submit" name="action" (click)="mostrarSegumientos(reporte.idunico)">
+                        <i class="fa fa-eye"></i> Ver Seguimiento
+                      </button> 
+                  </td>
+                  <td>
+                      <button class="btn waves-effect waves-light" style="background-color: red" type="submit" name="action" (click)="eliminarReporte(reporte.idunico)">
+                        <i class="fa fa-times"></i> Eliminar Reporte
+                      </button> 
+                  </td>
+                </tr>
+              </table>
+              
+            </agm-info-window>
+        </agm-marker>
+    </agm-map>
+</main>
