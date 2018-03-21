@@ -4,6 +4,8 @@ import { FirebaseService } from '../../servicios/firebase.service';
 import { AppSettings } from '../../app.settings';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { LocalStorageService } from '../../servicios/local-storage.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 declare var $: any;
 
@@ -20,8 +22,10 @@ export class ReporteHistoricoComponent implements OnInit, AfterViewInit {
   seguimiento: any = {comentario: '', fecha: '', idunico: '', latitud: '', longitud: ''};
   idReporte: string;
   ciudad: any;
+  imagen: any = {src: 'assets/img/camara.jpg', width: '50%', height: '50%'};
+
   constructor(private service: FirebaseService, private activatedRoute: ActivatedRoute, private appSetting: AppSettings,
-    private local: LocalStorageService) { }
+    private local: LocalStorageService, private domSanitizer: DomSanitizer, private camera: Camera) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -38,6 +42,10 @@ export class ReporteHistoricoComponent implements OnInit, AfterViewInit {
     this.service.obtenerDatosPorIdUnico('Reportes', this.idReporte).subscribe(
       result => {
         this.reporte = this.appSetting.getIconosMapasIndividual(result);
+        if (this.reporte.imagen !== '') {
+          const img = 'data:image/jpeg;base64,' + this.reporte.imagen;
+          this.imagen = {src: this.domSanitizer.bypassSecurityTrustUrl(img), width: '100%', height: '100%'};
+        }
         this.buscarSeguimiento();
       }
     );

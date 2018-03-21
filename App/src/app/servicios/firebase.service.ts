@@ -140,7 +140,11 @@ export class FirebaseService {
 
   guardarSeguimientoDatos(tabla: string, data)  {
     this.itemsCollection = this.afs.collection<any>(tabla);
-    this.itemsCollection.add(data);
+    this.itemsCollection.add(data).then((resp) => {
+      console.log(resp);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   actualizarDatos(tabla: string, data, id) {

@@ -30,6 +30,18 @@ export class  AppSettings {
         return `${dd}/${mm}/${yyyy}`;
     }
 
+    getCurrentHour() {
+      const d = new Date();
+      return `${this.addZero(d.getHours())}:${this.addZero(d.getMinutes())}:${this.addZero(d.getSeconds())}`;
+    }
+
+    addZero(i) {
+        if (i < 10) {
+            i = '0' + i;
+        }
+        return i;
+    }
+
     getIconosMapas(result) {
         result.forEach(data => {
             switch (data.tipo) {

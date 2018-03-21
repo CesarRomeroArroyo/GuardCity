@@ -9,12 +9,20 @@
 <div class="card z-depth-2">
   <div class="card-content black-text">
       <div class="container">
-          <div class="col s12">
-              <br/>
-              <label><b>Que Reportas?</b></label>
+            <div class="col s12">
+                <br/>
+                <label><b>Que Reportas?</b></label>
                 <select class="browser-default" [(ngModel)]="reporte.tipo" name="tipo">
                     <option *ngFor="let c of tipo_reporte" [ngValue]="c.texto">{{c.texto}}</option>
                 </select>
+            </div>
+            <div class="col s12">
+                <br/>
+                <label><b>Fotografia</b></label><br/>
+                <div style="width: 100%; text-align: center">
+                    <img [src]="imagen.src" [ngStyle]="{'width':imagen.width, 'height': imagen.height}" (click)="obtenerFotografia()">
+                </div>
+                
             </div>
             <br/>
             <label for="textarea1"><b>Mas informacion </b></label>
@@ -37,5 +45,17 @@
     <div class="modal-content" style="text-align: center">
       <h5>GuardCity</h5>
       <i class="fa fa-circle-o-notch fa-5x fa-spin"></i>
+    </div>
+  </div>
+
+  <div id="modalGuardado" class="modal">
+    <div class="modal-content" style="text-align: center">
+      <h5>GuardCity</h5>
+      Se guardo tu reporte con exito
+        <div class="col s12">                                
+            <a class="waves-effect waves-light btn-large" style="width: 99%" (click)="mostrarReportesHoy()">
+                <i class="fa fa-check"></i> Aceptar
+            </a>
+        </div>
     </div>
   </div>

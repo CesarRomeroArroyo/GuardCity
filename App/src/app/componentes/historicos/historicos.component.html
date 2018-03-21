@@ -11,12 +11,12 @@
       
           <ul class="collection">
 
-              <li class="collection-item avatar" *ngFor="let reporte of reportes">
+              <li class="collection-item avatar" *ngFor="let reporte of reportes" [routerLink]="['/reportehistorico', reporte.idunico]">
                 <a style="color:black" [routerLink]="['/reportehistorico', reporte.idunico]">
                   <i class="fa fa-bullhorn circle" style="background: #227595">
                     
                   </i>
-                  <span class="title">{{reporte.tipo}} <span class="badge red" style="color:white">{{reporte.fecha}}</span> </span>
+                  <span class="title">{{reporte.tipo}} <span class="badge red" style="color:white">{{reporte.fecha}}, {{reporte.hora}}</span> </span>
                   <p>{{reporte.comentario.substring(0, 70)}} ...
                   </p>
                 </a>

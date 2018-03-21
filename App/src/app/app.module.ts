@@ -29,7 +29,7 @@ import { ZonasComponent } from './componentes/zonas/zonas.component';
 import { AgmCoreModule } from '@agm/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Vibration } from '@ionic-native/vibration';
-
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -62,6 +62,7 @@ import { Vibration } from '@ionic-native/vibration';
     LocalStorageService,
     AppSettings,
     Geolocation,
+    Camera,
     Vibration,
     {
       provide: HTTP_INTERCEPTORS,

@@ -10,7 +10,7 @@
             <i class="fa fa-bullhorn fa-4x" ></i><br/>
             <b style="font-size: 25px">{{reporte.tipo}}</b> <br/>
             <div class="nav-content right">
-                <span class="badge red" style="color:white">{{reporte.fecha}}</span>
+                <span class="badge red" style="color:white">{{reporte.fecha}}, {{reporte.hora}}</span>
             </div>
             <br/>
             <br/>
@@ -18,10 +18,15 @@
         
     </nav>
     <div class="card z-depth-2">
-      <div class="card-content black-text">
-          <b>Mas Informacion:</b> <br/>
-          {{reporte.comentario}}
-      </div>
+        <div class="card-image">
+            <div style="width: 100%; text-align: center">
+                <img [src]="imagen.src" [ngStyle]="{'width':imagen.width, 'height': imagen.height}">
+            </div>
+        </div>
+        <div class="card-content black-text">
+            <b>Mas Informacion:</b> <br/>
+            {{reporte.comentario}}
+        </div>
     </div>
     
 
