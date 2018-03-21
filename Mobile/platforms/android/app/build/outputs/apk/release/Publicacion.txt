@@ -1,0 +1,12 @@
+Para la creación del apk preparado para ser firmado:
+Desde la carpeta donde se encuentra el proyecto (en el ejemplo del vídeo c:\app\jab), escribir:
+build android --release
+
+Comandos y parámetros para la creación de la firma y compilación del APK final.
+(Sustituye "NOMBRE" por el nombre de tu proyecto):
+
+keytool -genkey -v -keystore NOMBRE-key.keystore -alias NOMBRE -keyalg RSA -keysize 2048 -validity 10000
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore NOMBRE-key.keystore android-release-unsigned.apk NOMBRE
+
+zipalign -v 4 android-release-unsigned.apk apkfirmado.apk

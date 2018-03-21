@@ -30,6 +30,7 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.guardcity.app.permission.RECEIVE_ADM_MESSAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- Create a unique permission for your app and use it so only your app can receive your OneSignal messages. -->
     <permission
         android:name="com.guardcity.app.permission.C2D_MESSAGE"
@@ -106,6 +107,16 @@
                 <category android:name="com.guardcity.app" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.guardcity.app.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
         <meta-data
             android:name="onesignal_app_id"

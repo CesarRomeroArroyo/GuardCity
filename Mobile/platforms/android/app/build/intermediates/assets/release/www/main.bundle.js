@@ -104,12 +104,14 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__agm_core__ = __webpack_require__("./node_modules/@agm/core/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_native_geolocation__ = __webpack_require__("./node_modules/@ionic-native/geolocation/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__ionic_native_vibration__ = __webpack_require__("./node_modules/@ionic-native/vibration/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__ionic_native_camera__ = __webpack_require__("./node_modules/@ionic-native/camera/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -172,6 +174,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_20__servicios_local_storage_service__["a" /* LocalStorageService */],
                 __WEBPACK_IMPORTED_MODULE_8__app_settings__["a" /* AppSettings */],
                 __WEBPACK_IMPORTED_MODULE_25__ionic_native_geolocation__["a" /* Geolocation */],
+                __WEBPACK_IMPORTED_MODULE_27__ionic_native_camera__["a" /* Camera */],
                 __WEBPACK_IMPORTED_MODULE_26__ionic_native_vibration__["a" /* Vibration */],
                 {
                     provide: __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HTTP_INTERCEPTORS */],
@@ -267,6 +270,16 @@ var AppSettings = /** @class */ (function () {
             mm = "0" + mm;
         }
         return dd + "/" + mm + "/" + yyyy;
+    };
+    AppSettings.prototype.getCurrentHour = function () {
+        var d = new Date();
+        return this.addZero(d.getHours()) + ":" + this.addZero(d.getMinutes()) + ":" + this.addZero(d.getSeconds());
+    };
+    AppSettings.prototype.addZero = function (i) {
+        if (i < 10) {
+            i = '0' + i;
+        }
+        return i;
     };
     AppSettings.prototype.getIconosMapas = function (result) {
         result.forEach(function (data) {
@@ -534,7 +547,7 @@ module.exports = ""
 /***/ "./src/app/componentes/historicos/historicos.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav style=\"background: #2c8eb3\">\n    <div class=\"side-navbar\">\n      <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Mis Historico</a></div>\n      <a href=\"javascript:history.back(1)\">\n          <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n      </a>\n    </div>\n</nav>\n<div class=\"card z-depth-2\">\n  \n      \n          <ul class=\"collection\">\n\n              <li class=\"collection-item avatar\" *ngFor=\"let reporte of reportes\">\n                <a style=\"color:black\" [routerLink]=\"['/reportehistorico', reporte.idunico]\">\n                  <i class=\"fa fa-bullhorn circle\" style=\"background: #227595\">\n                    \n                  </i>\n                  <span class=\"title\">{{reporte.tipo}} <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}</span> </span>\n                  <p>{{reporte.comentario.substring(0, 70)}} ...\n                  </p>\n                </a>\n              </li>\n\n            </ul>\n      \n  \n  <input type=\"hidden\" id=\"latzona\"/>\n  <input type=\"hidden\" id=\"lonzona\"/>\n</div>\n"
+module.exports = "<nav style=\"background: #2c8eb3\">\n    <div class=\"side-navbar\">\n      <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Mis Historico</a></div>\n      <a href=\"javascript:history.back(1)\">\n          <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n      </a>\n    </div>\n</nav>\n<div class=\"card z-depth-2\">\n  \n      \n          <ul class=\"collection\">\n\n              <li class=\"collection-item avatar\" *ngFor=\"let reporte of reportes\" [routerLink]=\"['/reportehistorico', reporte.idunico]\">\n                <a style=\"color:black\" [routerLink]=\"['/reportehistorico', reporte.idunico]\">\n                  <i class=\"fa fa-bullhorn circle\" style=\"background: #227595\">\n                    \n                  </i>\n                  <span class=\"title\">{{reporte.tipo}} <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}, {{reporte.hora}}</span> </span>\n                  <p>{{reporte.comentario.substring(0, 70)}} ...\n                  </p>\n                </a>\n              </li>\n\n            </ul>\n      \n  \n  <input type=\"hidden\" id=\"latzona\"/>\n  <input type=\"hidden\" id=\"lonzona\"/>\n</div>\n"
 
 /***/ }),
 
@@ -883,7 +896,7 @@ module.exports = ".modal.bottom-sheet {\r\n    height: 90% !important;\r\n    ma
 /***/ "./src/app/componentes/reporte-historico/reporte-historico.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"nav-extended\" style=\"background: #2c8eb3\">\n        <div class=\"side-navbar\">\n          <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reporte</a></div>\n          <a href=\"javascript:history.back(1)\">\n              <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n          </a>\n        </div>\n        <div class=\"nav-content center\">\n            \n            <i class=\"fa fa-bullhorn fa-4x\" ></i><br/>\n            <b style=\"font-size: 25px\">{{reporte.tipo}}</b> <br/>\n            <div class=\"nav-content right\">\n                <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}</span>\n            </div>\n            <br/>\n            <br/>\n        </div>\n        \n    </nav>\n    <div class=\"card z-depth-2\">\n      <div class=\"card-content black-text\">\n          <b>Mas Informacion:</b> <br/>\n          {{reporte.comentario}}\n      </div>\n    </div>\n    \n\n    <div class=\"card z-depth-2\">\n            <div class=\"card-content black-text\">\n              <b>Mapa de seguimiento</b>\n              <agm-map [latitude]=\"reporte.latitud\" [longitude]=\"reporte.longitud\" [zoom]=\"13\">\n                  <agm-marker [latitude]=\"obtenerFlotante(reporte.latitud)\" [longitude]=\"obtenerFlotante(reporte.longitud)\" [iconUrl]=\"reporte.icon\">\n                      <agm-info-window>\n                        <b>{{reporte.tipo}}</b><br>\n                        {{reporte.comentario}}\n                      </agm-info-window>\n                  </agm-marker>\n                  <agm-marker [latitude]=\"obtenerFlotante(repo.latitud)\" [longitude]=\"obtenerFlotante(repo.longitud)\" *ngFor=\"let repo of seguimientos\">\n                      <agm-info-window>{{repo.comentario}}</agm-info-window>\n                  </agm-marker>\n              </agm-map>\n            </div>\n        </div>\n\n    <div class=\"card z-depth-2\" *ngFor=\"let seguimiento of seguimientos\">\n      <div class=\"card-content black-text\">\n          {{seguimiento.comentario}} <br/>\n          <div class=\"nav-content right\">\n              <span class=\"badge red\" style=\"color:white\">{{seguimiento.fecha}}</span>\n          </div>\n      </div>\n    </div>\n"
+module.exports = "<nav class=\"nav-extended\" style=\"background: #2c8eb3\">\n        <div class=\"side-navbar\">\n          <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reporte</a></div>\n          <a href=\"javascript:history.back(1)\">\n              <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n          </a>\n        </div>\n        <div class=\"nav-content center\">\n            \n            <i class=\"fa fa-bullhorn fa-4x\" ></i><br/>\n            <b style=\"font-size: 25px\">{{reporte.tipo}}</b> <br/>\n            <div class=\"nav-content right\">\n                <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}, {{reporte.hora}}</span>\n            </div>\n            <br/>\n            <br/>\n        </div>\n        \n    </nav>\n    <div class=\"card z-depth-2\">\n        <div class=\"card-image\">\n            <div style=\"width: 100%; text-align: center\">\n                <img [src]=\"imagen.src\" [ngStyle]=\"{'width':imagen.width, 'height': imagen.height}\">\n            </div>\n        </div>\n        <div class=\"card-content black-text\">\n            <b>Mas Informacion:</b> <br/>\n            {{reporte.comentario}}\n        </div>\n    </div>\n    \n\n    <div class=\"card z-depth-2\">\n            <div class=\"card-content black-text\">\n              <b>Mapa de seguimiento</b>\n              <agm-map [latitude]=\"reporte.latitud\" [longitude]=\"reporte.longitud\" [zoom]=\"13\">\n                  <agm-marker [latitude]=\"obtenerFlotante(reporte.latitud)\" [longitude]=\"obtenerFlotante(reporte.longitud)\" [iconUrl]=\"reporte.icon\">\n                      <agm-info-window>\n                        <b>{{reporte.tipo}}</b><br>\n                        {{reporte.comentario}}\n                      </agm-info-window>\n                  </agm-marker>\n                  <agm-marker [latitude]=\"obtenerFlotante(repo.latitud)\" [longitude]=\"obtenerFlotante(repo.longitud)\" *ngFor=\"let repo of seguimientos\">\n                      <agm-info-window>{{repo.comentario}}</agm-info-window>\n                  </agm-marker>\n              </agm-map>\n            </div>\n        </div>\n\n    <div class=\"card z-depth-2\" *ngFor=\"let seguimiento of seguimientos\">\n      <div class=\"card-content black-text\">\n          {{seguimiento.comentario}} <br/>\n          <div class=\"nav-content right\">\n              <span class=\"badge red\" style=\"color:white\">{{seguimiento.fecha}}</span>\n          </div>\n      </div>\n    </div>\n"
 
 /***/ }),
 
@@ -897,6 +910,8 @@ module.exports = "<nav class=\"nav-extended\" style=\"background: #2c8eb3\">\n  
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_settings__ = __webpack_require__("./src/app/app.settings.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servicios_local_storage_service__ = __webpack_require__("./src/app/servicios/local-storage.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__("./node_modules/@ionic-native/camera/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -911,13 +926,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var ReporteHistoricoComponent = /** @class */ (function () {
-    function ReporteHistoricoComponent(service, activatedRoute, appSetting, local) {
+    function ReporteHistoricoComponent(service, activatedRoute, appSetting, local, domSanitizer, camera) {
         this.service = service;
         this.activatedRoute = activatedRoute;
         this.appSetting = appSetting;
         this.local = local;
+        this.domSanitizer = domSanitizer;
+        this.camera = camera;
         this.seguimiento = { comentario: '', fecha: '', idunico: '', latitud: '', longitud: '' };
+        this.imagen = { src: 'assets/img/camara.jpg', width: '50%', height: '50%' };
     }
     ReporteHistoricoComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -934,6 +954,10 @@ var ReporteHistoricoComponent = /** @class */ (function () {
         var _this = this;
         this.service.obtenerDatosPorIdUnico('Reportes', this.idReporte).subscribe(function (result) {
             _this.reporte = _this.appSetting.getIconosMapasIndividual(result);
+            if (_this.reporte.imagen !== '') {
+                var img = 'data:image/jpeg;base64,' + _this.reporte.imagen;
+                _this.imagen = { src: _this.domSanitizer.bypassSecurityTrustUrl(img), width: '100%', height: '100%' };
+            }
             _this.buscarSeguimiento();
         });
     };
@@ -967,7 +991,7 @@ var ReporteHistoricoComponent = /** @class */ (function () {
             styles: [__webpack_require__("./src/app/componentes/reporte-historico/reporte-historico.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__servicios_firebase_service__["a" /* FirebaseService */], __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__app_settings__["a" /* AppSettings */],
-            __WEBPACK_IMPORTED_MODULE_4__servicios_local_storage_service__["a" /* LocalStorageService */]])
+            __WEBPACK_IMPORTED_MODULE_4__servicios_local_storage_service__["a" /* LocalStorageService */], __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["b" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__["a" /* Camera */]])
     ], ReporteHistoricoComponent);
     return ReporteHistoricoComponent;
 }());
@@ -986,7 +1010,7 @@ module.exports = ""
 /***/ "./src/app/componentes/reportes-dia/reportes-dia.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav style=\"background: #2c8eb3\">\n    <div class=\"side-navbar\">\n      <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reportes de Hoy</a></div>\n      <a [routerLink]=\"['/principal']\">\n          <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n      </a>\n    </div>\n</nav>\n<div class=\"card z-depth-2\">\n          <select class=\"browser-default\" name=\"reporteTipo\" [(ngModel)]=\"tipo\" (change)=\"seleccionarTipo()\">\n            <option value=\"1\">Todos los Reportes</option>\n            <option value=\"2\">Mis Reportes</option>\n          </select>\n          <br/>\n          <ul class=\"collection\">\n              <li class=\"collection-item avatar\" *ngFor=\"let reporte of reportes\">\n                <a style=\"color:black\" [routerLink]=\"['/reporteseguimiento', reporte.idunico]\">\n                  <i class=\"fa fa-bullhorn circle\" style=\"background: #227595\">\n                    \n                  </i>\n                  <span class=\"title\">{{reporte.tipo}} <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}</span> </span>\n                  <p>{{reporte.comentario.substring(0, 70)}} ...\n                  </p>\n                </a>\n              </li>\n            </ul>\n</div>\n"
+module.exports = "<nav style=\"background: #2c8eb3\">\n    <div class=\"side-navbar\">\n      <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reportes de Hoy</a></div>\n      <a [routerLink]=\"['/principal']\">\n          <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n      </a>\n    </div>\n</nav>\n<div class=\"card z-depth-2\">\n          <select class=\"browser-default\" name=\"reporteTipo\" [(ngModel)]=\"tipo\" (change)=\"seleccionarTipo()\">\n            <option value=\"1\">Todos los Reportes</option>\n            <option value=\"2\">Mis Reportes</option>\n          </select>\n          <br/>\n          <ul class=\"collection\">\n              <li class=\"collection-item avatar\" *ngFor=\"let reporte of reportes\">\n                <a style=\"color:black\" [routerLink]=\"['/reporteseguimiento', reporte.idunico]\">\n                  <i class=\"fa fa-bullhorn circle\" style=\"background: #227595\">\n                    \n                  </i>\n                  <span class=\"title\">{{reporte.tipo}} <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}, {{reporte.hora}}</span> </span>\n                  <p>{{reporte.comentario.substring(0, 70)}} ...\n                  </p>\n                </a>\n              </li>\n            </ul>\n</div>\n"
 
 /***/ }),
 
@@ -1068,7 +1092,7 @@ module.exports = ".modal.bottom-sheet {\r\n    height: 90% !important;\r\n    ma
 /***/ "./src/app/componentes/reportes-seguimiento/reportes-seguimiento.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"nav-extended\" style=\"background: #2c8eb3\">\n    <div class=\"side-navbar\">\n      <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reporte</a></div>\n      <a href=\"javascript:history.back(1)\">\n          <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n      </a>\n    </div>\n    <div class=\"nav-content center\">\n        \n        <i class=\"fa fa-bullhorn fa-4x\" ></i><br/>\n        <b style=\"font-size: 25px\">{{reporte.tipo}}</b> <br/>\n        <div class=\"nav-content right\">\n            <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}</span>\n        </div>\n        <br/>\n        <br/>\n    </div>\n    \n</nav>\n<div class=\"card z-depth-2\">\n  <div class=\"card-content black-text\">\n      <b>Mas Informacion:</b> <br/>\n      {{reporte.comentario}}\n  </div>\n</div>\n<div class=\"card z-depth-2\">\n    <div class=\"card-content black-text\">\n      <b>Mapa de seguimiento</b>\n      <agm-map [latitude]=\"reporte.latitud\" [longitude]=\"reporte.longitud\" [zoom]=\"13\">\n          <agm-marker [latitude]=\"obtenerFlotante(reporte.latitud)\" [longitude]=\"obtenerFlotante(reporte.longitud)\" [iconUrl]=\"reporte.icon\">\n              <agm-info-window>\n                <b>{{reporte.tipo}}</b><br>\n                {{reporte.comentario}}\n              </agm-info-window>\n          </agm-marker>\n          <agm-marker [latitude]=\"obtenerFlotante(repo.latitud)\" [longitude]=\"obtenerFlotante(repo.longitud)\" *ngFor=\"let repo of seguimientos\">\n              <agm-info-window>{{repo.comentario}}</agm-info-window>\n          </agm-marker>\n      </agm-map>\n    </div>\n</div>\n<div class=\"card z-depth-2\" *ngFor=\"let seguimiento of seguimientos\">\n  <div class=\"card-content black-text\">\n      {{seguimiento.comentario}} <br/>\n      <div class=\"nav-content right\">\n          <span class=\"badge red\" style=\"color:white\">{{seguimiento.fecha}}</span>\n      </div>\n  </div>\n</div>\n\n<div class=\"col s12 right\">\n    <div class=\"fixed-action-btn\">\n        <a class=\"btn-floating btn-large \" style=\"background-color: #282f39\" (click)=\"abrirModalSeguimiento()\">\n          <i class=\"fa fa-plus\"></i>\n        </a>\n      </div>\n</div>\n\n\n\n<div id=\"modalSeguimiento\" class=\"modal bottom-sheet\" style=\"\">\n  <div class=\"modal-content\">\n    <p>Añadir Seguimiento</p>\n    <div class=\"input-field col s12\">\n        <textarea id=\"descripcion\" class=\"materialize-textarea\" [(ngModel)]=\"seguimiento.comentario\" placeholder=\"Indique Informacion como << moto grande de color X y placas XXX >> o << Sujeto sospechoso con camisa de color verde >>\"></textarea>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <a class=\"modal-action modal-close waves-effect waves-green btn-flat\" (click)=\"registrarSeguimiento()\" >Aceptar</a>\n  </div>\n</div>\n        "
+module.exports = "<nav class=\"nav-extended\" style=\"background: #2c8eb3\">\n    <div class=\"side-navbar\">\n      <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reporte</a></div>\n      <a href=\"javascript:history.back(1)\">\n          <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n      </a>\n    </div>\n    <div class=\"nav-content center\">\n        \n        <i class=\"fa fa-bullhorn fa-4x\" ></i><br/>\n        <b style=\"font-size: 25px\">{{reporte.tipo}}</b> <br/>\n        <div class=\"nav-content right\">\n            <span class=\"badge red\" style=\"color:white\">{{reporte.fecha}}, {{reporte.hora}}</span>\n        </div>\n        <br/>\n        <br/>\n    </div>\n    \n</nav>\n<div class=\"card z-depth-2\">\n    <div class=\"card-image\">\n        <div style=\"width: 100%; text-align: center\">\n            <img [src]=\"imagen.src\" [ngStyle]=\"{'width':imagen.width, 'height': imagen.height}\">\n        </div>\n    </div>\n  <div class=\"card-content black-text\">\n      <b>Mas Informacion:</b> <br/>\n      {{reporte.comentario}}\n  </div>\n</div>\n<div class=\"card z-depth-2\">\n    <div class=\"card-content black-text\">\n      <b>Mapa de seguimiento</b>\n      <agm-map [latitude]=\"reporte.latitud\" [longitude]=\"reporte.longitud\" [zoom]=\"13\">\n          <agm-marker [latitude]=\"obtenerFlotante(reporte.latitud)\" [longitude]=\"obtenerFlotante(reporte.longitud)\" [iconUrl]=\"reporte.icon\">\n              <agm-info-window>\n                <b>{{reporte.tipo}}</b><br>\n                {{reporte.comentario}}\n              </agm-info-window>\n          </agm-marker>\n          <agm-marker [latitude]=\"obtenerFlotante(repo.latitud)\" [longitude]=\"obtenerFlotante(repo.longitud)\" *ngFor=\"let repo of seguimientos\">\n              <agm-info-window>{{repo.comentario}}</agm-info-window>\n          </agm-marker>\n      </agm-map>\n    </div>\n</div>\n<div class=\"card z-depth-2\" *ngFor=\"let seguimiento of seguimientos\">\n    <div class=\"card-image\">\n        <div style=\"width: 100%; text-align: center\">\n            <img [src]=\"seguimiento.imagen\" [ngStyle]=\"{'width':'100%', 'height': '100%'}\">\n        </div>\n    </div>\n    <div class=\"card-content black-text\">\n            <div class=\"nav-content right\">\n                    <span class=\"badge red\" style=\"color:white\">{{seguimiento.fecha}}, {{seguimiento.hora}}</span>\n                </div>\n         <br/>\n         {{seguimiento.comentario}}\n    </div>\n</div>\n\n<div class=\"col s12 right\">\n    <div class=\"fixed-action-btn\">\n        <a class=\"btn-floating btn-large \" style=\"background-color: #282f39\" (click)=\"abrirModalSeguimiento()\">\n          <i class=\"fa fa-plus\"></i>\n        </a>\n      </div>\n</div>\n\n\n\n<div id=\"modalSeguimiento\" class=\"modal bottom-sheet\" style=\"\">\n  <div class=\"modal-content\">\n    <p>Añadir Seguimiento</p>\n    <div class=\"col s12\">\n            \n            <label><b>Fotografia</b></label><br/>\n            <div style=\"width: 100%; text-align: center\">\n                <img [src]=\"imagen2.src\" [ngStyle]=\"{'width':imagen2.width, 'height': imagen2.height}\" (click)=\"obtenerFotografia()\">\n            </div>\n    </div>\n    <br/>\n    <label for=\"textarea1\"><b>Mas informacion </b></label>\n    <div class=\"input-field col s12\">\n        <textarea id=\"descripcion\" class=\"materialize-textarea\" [(ngModel)]=\"seguimiento.comentario\" placeholder=\"Indique Informacion como << moto grande de color X y placas XXX >> o << Sujeto sospechoso con camisa de color verde >>\"></textarea>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <a class=\"modal-action modal-close waves-effect waves-green btn-flat\" (click)=\"registrarSeguimiento()\" >Aceptar</a>\n  </div>\n</div>\n        "
 
 /***/ }),
 
@@ -1085,6 +1109,8 @@ module.exports = "<nav class=\"nav-extended\" style=\"background: #2c8eb3\">\n  
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__("./node_modules/@ionic-native/geolocation/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_vibration__ = __webpack_require__("./node_modules/@ionic-native/vibration/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__servicios_onesignal_service__ = __webpack_require__("./src/app/servicios/onesignal.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__ = __webpack_require__("./node_modules/@ionic-native/camera/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1102,8 +1128,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var ReportesSeguimientoComponent = /** @class */ (function () {
-    function ReportesSeguimientoComponent(service, activatedRoute, appSettings, local, geolocation, vibration, oneSignal) {
+    function ReportesSeguimientoComponent(service, activatedRoute, appSettings, local, geolocation, vibration, oneSignal, domSanitizer, camera) {
         this.service = service;
         this.activatedRoute = activatedRoute;
         this.appSettings = appSettings;
@@ -1111,7 +1139,12 @@ var ReportesSeguimientoComponent = /** @class */ (function () {
         this.geolocation = geolocation;
         this.vibration = vibration;
         this.oneSignal = oneSignal;
-        this.seguimiento = { comentario: '', fecha: '', idunico: '', latitud: '', longitud: '' };
+        this.domSanitizer = domSanitizer;
+        this.camera = camera;
+        this.seguimiento = { comentario: '', fecha: '', idunico: '', latitud: '', longitud: '', imagen: '', hora: '' };
+        this.imagen = { src: 'assets/img/camara.jpg', width: '50%', height: '50%' };
+        this.imagen2 = { src: 'assets/img/camara.jpg', width: '50%', height: '50%' };
+        this.base64Image = '';
     }
     ReportesSeguimientoComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1121,12 +1154,32 @@ var ReportesSeguimientoComponent = /** @class */ (function () {
             _this.ciudad.longitud = parseFloat(_this.ciudad.longitud);
             _this.idReporte = params['id'];
             _this.buscarReporte();
+            _this.cameraConfiguration = {
+                quality: 50,
+                destinationType: _this.camera.DestinationType.DATA_URL,
+                encodingType: _this.camera.EncodingType.JPEG,
+                mediaType: _this.camera.MediaType.PICTURE
+            };
+        });
+    };
+    ReportesSeguimientoComponent.prototype.obtenerFotografia = function () {
+        var _this = this;
+        this.camera.getPicture(this.cameraConfiguration).then(function (imageData) {
+            _this.base64Image = imageData;
+            var img = 'data:image/jpeg;base64,' + imageData;
+            _this.imagen2 = { src: _this.domSanitizer.bypassSecurityTrustUrl(img), width: '100%', height: '100%' };
+        }, function (err) {
+            alert('Ocurrio un error al tratar de usar la camara');
         });
     };
     ReportesSeguimientoComponent.prototype.buscarReporte = function () {
         var _this = this;
         this.service.obtenerDatosPorIdUnico('Reportes', this.idReporte).subscribe(function (result) {
             _this.reporte = _this.appSettings.getIconosMapasIndividual(result);
+            if (_this.reporte.imagen !== '') {
+                var img = 'data:image/jpeg;base64,' + _this.reporte.imagen;
+                _this.imagen = { src: _this.domSanitizer.bypassSecurityTrustUrl(img), width: '100%', height: '100%' };
+            }
             _this.buscarSeguimiento();
         });
     };
@@ -1142,6 +1195,10 @@ var ReportesSeguimientoComponent = /** @class */ (function () {
                 _this.vibration.vibrate(1000);
             }
             _this.seguimientos = result;
+            for (var i = 0; i < _this.seguimientos.length; i++) {
+                var img = 'data:image/jpeg;base64,' + _this.seguimientos[i].imagen;
+                _this.seguimientos[i].imagen = _this.domSanitizer.bypassSecurityTrustUrl(img);
+            }
         });
     };
     ReportesSeguimientoComponent.prototype.registrarSeguimiento = function () {
@@ -1152,6 +1209,9 @@ var ReportesSeguimientoComponent = /** @class */ (function () {
                 _this.seguimiento.longitud = resp.coords.longitude;
                 _this.seguimiento.fecha = _this.appSettings.getCurrentDay();
                 _this.seguimiento.idunico = _this.idReporte;
+                _this.seguimiento.hora = _this.appSettings.getCurrentHour();
+                _this.seguimiento.imagen = _this.base64Image;
+                _this.imagen2 = { src: 'assets/img/camara.jpg', width: '50%', height: '50%' };
                 _this.service.guardarSeguimientoDatos('Seguimientos', _this.seguimiento);
                 _this.oneSignal.enviarPush("Se ha reportado un Seguimiento a " + _this.reporte.tipo + ", " + _this.seguimiento.comentario);
                 _this.buscarSeguimiento();
@@ -1162,7 +1222,7 @@ var ReportesSeguimientoComponent = /** @class */ (function () {
         }
     };
     ReportesSeguimientoComponent.prototype.reiniciarSeguimiento = function () {
-        this.seguimiento = { comentario: '', fecha: '', idunico: '', latitud: '', longitud: '' };
+        this.seguimiento = { comentario: '', fecha: '', idunico: '', latitud: '', longitud: '', hora: '', imagen: '' };
     };
     ReportesSeguimientoComponent.prototype.abrirModalSeguimiento = function () {
         $('#modalSeguimiento').modal('open');
@@ -1191,7 +1251,7 @@ var ReportesSeguimientoComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__servicios_firebase_service__["a" /* FirebaseService */], __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__app_settings__["a" /* AppSettings */],
             __WEBPACK_IMPORTED_MODULE_4__servicios_local_storage_service__["a" /* LocalStorageService */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_vibration__["a" /* Vibration */],
-            __WEBPACK_IMPORTED_MODULE_7__servicios_onesignal_service__["a" /* OnesignalService */]])
+            __WEBPACK_IMPORTED_MODULE_7__servicios_onesignal_service__["a" /* OnesignalService */], __WEBPACK_IMPORTED_MODULE_8__angular_platform_browser__["b" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__["a" /* Camera */]])
     ], ReportesSeguimientoComponent);
     return ReportesSeguimientoComponent;
 }());
@@ -1210,7 +1270,7 @@ module.exports = ""
 /***/ "./src/app/componentes/reportes/reportes.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav style=\"background: #2c8eb3\">\n    <div class=\"side-navbar\">\n      <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reportes</a></div>\n      <a href=\"javascript:history.back(1)\">\n          <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n      </a>\n    </div>\n</nav>\n<div class=\"card z-depth-2\">\n  <div class=\"card-content black-text\">\n      <div class=\"container\">\n          <div class=\"col s12\">\n              <br/>\n              <label><b>Que Reportas?</b></label>\n                <select class=\"browser-default\" [(ngModel)]=\"reporte.tipo\" name=\"tipo\">\n                    <option *ngFor=\"let c of tipo_reporte\" [ngValue]=\"c.texto\">{{c.texto}}</option>\n                </select>\n            </div>\n            <br/>\n            <label for=\"textarea1\"><b>Mas informacion </b></label>\n            <div class=\"input-field col s12\">\n              <textarea [(ngModel)]=\"reporte.comentario\" id=\"comentario\" name=\"comentario\" class=\"materialize-textarea\" placeholder=\"Indique Informacion como << moto grande de color X y placas XXX >> o << Sujeto sospechoso con camisa de color verde >>\"></textarea>\n              \n            </div>                            \n          <div class=\"col s12\">                                \n              <a class=\"waves-effect waves-light btn-large\" style=\"width: 99%\" (click)=\"enviarReporte()\"><i class=\"mdi-content-send\"></i> Enviar</a>                                \n          </div>\n          <div class=\"col s12\">  \n              <br/>\n          </div>\n      </div>\n  </div>\n</div>\n\n\n<div id=\"modalCargando\" class=\"modal\">\n    <div class=\"modal-content\" style=\"text-align: center\">\n      <h5>GuardCity</h5>\n      <i class=\"fa fa-circle-o-notch fa-5x fa-spin\"></i>\n    </div>\n  </div>"
+module.exports = "<nav style=\"background: #2c8eb3\">\n    <div class=\"side-navbar\">\n      <div style=\"padding-bottom: 10px;  text-align: center\"><a class=\"brand-logo\">Reportes</a></div>\n      <a href=\"javascript:history.back(1)\">\n          <i class=\"fa fa-arrow-left fa-2x\" style=\"margin-left: 10px;\"></i>\n      </a>\n    </div>\n</nav>\n<div class=\"card z-depth-2\">\n  <div class=\"card-content black-text\">\n      <div class=\"container\">\n            <div class=\"col s12\">\n                <br/>\n                <label><b>Que Reportas?</b></label>\n                <select class=\"browser-default\" [(ngModel)]=\"reporte.tipo\" name=\"tipo\">\n                    <option *ngFor=\"let c of tipo_reporte\" [ngValue]=\"c.texto\">{{c.texto}}</option>\n                </select>\n            </div>\n            <div class=\"col s12\">\n                <br/>\n                <label><b>Fotografia</b></label><br/>\n                <div style=\"width: 100%; text-align: center\">\n                    <img [src]=\"imagen.src\" [ngStyle]=\"{'width':imagen.width, 'height': imagen.height}\" (click)=\"obtenerFotografia()\">\n                </div>\n                \n            </div>\n            <br/>\n            <label for=\"textarea1\"><b>Mas informacion </b></label>\n            <div class=\"input-field col s12\">\n              <textarea [(ngModel)]=\"reporte.comentario\" id=\"comentario\" name=\"comentario\" class=\"materialize-textarea\" placeholder=\"Indique Informacion como << moto grande de color X y placas XXX >> o << Sujeto sospechoso con camisa de color verde >>\"></textarea>\n              \n            </div>                            \n          <div class=\"col s12\">                                \n              <a class=\"waves-effect waves-light btn-large\" style=\"width: 99%\" (click)=\"enviarReporte()\"><i class=\"mdi-content-send\"></i> Enviar</a>                                \n          </div>\n          <div class=\"col s12\">  \n              <br/>\n          </div>\n      </div>\n  </div>\n</div>\n\n\n<div id=\"modalCargando\" class=\"modal\">\n    <div class=\"modal-content\" style=\"text-align: center\">\n      <h5>GuardCity</h5>\n      <i class=\"fa fa-circle-o-notch fa-5x fa-spin\"></i>\n    </div>\n  </div>\n\n  <div id=\"modalGuardado\" class=\"modal\">\n    <div class=\"modal-content\" style=\"text-align: center\">\n      <h5>GuardCity</h5>\n      Se guardo tu reporte con exito\n        <div class=\"col s12\">                                \n            <a class=\"waves-effect waves-light btn-large\" style=\"width: 99%\" (click)=\"mostrarReportesHoy()\">\n                <i class=\"fa fa-check\"></i> Aceptar\n            </a>\n        </div>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -1225,7 +1285,9 @@ module.exports = "<nav style=\"background: #2c8eb3\">\n    <div class=\"side-nav
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__servicios_local_storage_service__ = __webpack_require__("./src/app/servicios/local-storage.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__("./node_modules/@ionic-native/geolocation/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__servicios_onesignal_service__ = __webpack_require__("./src/app/servicios/onesignal.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__("./node_modules/@ionic-native/camera/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__servicios_onesignal_service__ = __webpack_require__("./src/app/servicios/onesignal.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1242,8 +1304,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var ReportesComponent = /** @class */ (function () {
-    function ReportesComponent(service, appSettings, local, route, router, geolocation, oneSignal) {
+    function ReportesComponent(service, appSettings, local, route, router, geolocation, oneSignal, camera, domSanitizer) {
         this.service = service;
         this.appSettings = appSettings;
         this.local = local;
@@ -1251,11 +1315,32 @@ var ReportesComponent = /** @class */ (function () {
         this.router = router;
         this.geolocation = geolocation;
         this.oneSignal = oneSignal;
-        this.reporte = { comentario: '', estado: 1, fecha: '', idunico: '', latitud: '', longitud: '', tipo: 'Robo', usuario: '', usuario_estado: '' };
+        this.camera = camera;
+        this.domSanitizer = domSanitizer;
+        this.reporte = { comentario: '', estado: 1, fecha: '', idunico: '', latitud: '', longitud: '', tipo: 'Robo', usuario: '',
+            usuario_estado: '', imagen: '', hora: '' };
         this.tipo_reporte = { texto: '' };
+        this.imagen = { src: 'assets/img/camara.jpg', width: '50%', height: '50%' };
+        this.base64Image = '';
     }
     ReportesComponent.prototype.ngOnInit = function () {
         this.obtenerTipoReportes();
+        this.cameraConfiguration = {
+            quality: 50,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE
+        };
+    };
+    ReportesComponent.prototype.obtenerFotografia = function () {
+        var _this = this;
+        this.camera.getPicture(this.cameraConfiguration).then(function (imageData) {
+            _this.base64Image = imageData;
+            var img = 'data:image/jpeg;base64,' + imageData;
+            _this.imagen = { src: _this.domSanitizer.bypassSecurityTrustUrl(img), width: '100%', height: '100%' };
+        }, function (err) {
+            alert('Ocurrio un error al tratar de usar la camara');
+        });
     };
     ReportesComponent.prototype.obtenerTipoReportes = function () {
         var _this = this;
@@ -1269,6 +1354,8 @@ var ReportesComponent = /** @class */ (function () {
         this.geolocation.getCurrentPosition().then(function (resp) {
             _this.reporte.latitud = resp.coords.latitude;
             _this.reporte.longitud = resp.coords.longitude;
+            _this.reporte.imagen = _this.base64Image;
+            _this.reporte.hora = _this.appSettings.getCurrentHour();
             var usuario = JSON.parse(_this.local.obtener('GUARDCITY_USER'))[0];
             _this.reporte.fecha = _this.appSettings.getCurrentDay();
             _this.reporte.usuario = usuario.id;
@@ -1277,18 +1364,23 @@ var ReportesComponent = /** @class */ (function () {
                 _this.oneSignal.enviarPush("Se ha reportado " + _this.reporte.tipo + ", " + _this.reporte.comentario);
                 _this.inicializarReporte();
                 $('#modalCargando').modal('close');
-                _this.router.navigate(['/reportedia']);
-            }, 3000);
+                $('#modalGuardado').modal('open');
+            }, 17000);
         }).catch(function (error) {
             alert('Existe un problema con sus GPS o no tiene instalado un modulo de GPS');
         });
     };
+    ReportesComponent.prototype.mostrarReportesHoy = function () {
+        $('#modalGuardado').modal('close');
+        this.imagen = { src: 'assets/img/camara.jpg', width: '50%', height: '50%' };
+        this.router.navigate(['/reportedia']);
+    };
     ReportesComponent.prototype.inicializarReporte = function () {
         this.reporte = { comentario: '', estado: 1, fecha: '', idunico: '', latitud: '', longitud: '',
-            tipo: 'Robo', usuario: '', usuario_estado: '' };
+            tipo: 'Robo', usuario: '', usuario_estado: '', imagen: '', hora: '' };
     };
     ReportesComponent.prototype.ngAfterViewInit = function () {
-        $('#modalCargando').modal({
+        $('.modal').modal({
             dismissible: true,
             opacity: .5,
             inDuration: 300,
@@ -1308,7 +1400,8 @@ var ReportesComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__servicios_firebase_service__["a" /* FirebaseService */], __WEBPACK_IMPORTED_MODULE_2__app_settings__["a" /* AppSettings */],
             __WEBPACK_IMPORTED_MODULE_3__servicios_local_storage_service__["a" /* LocalStorageService */], __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_6__servicios_onesignal_service__["a" /* OnesignalService */]])
+            __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_7__servicios_onesignal_service__["a" /* OnesignalService */],
+            __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_8__angular_platform_browser__["b" /* DomSanitizer */]])
     ], ReportesComponent);
     return ReportesComponent;
 }());
@@ -1683,7 +1776,11 @@ var FirebaseService = /** @class */ (function () {
     };
     FirebaseService.prototype.guardarSeguimientoDatos = function (tabla, data) {
         this.itemsCollection = this.afs.collection(tabla);
-        this.itemsCollection.add(data);
+        this.itemsCollection.add(data).then(function (resp) {
+            console.log(resp);
+        }).catch(function (error) {
+            console.log(error);
+        });
     };
     FirebaseService.prototype.actualizarDatos = function (tabla, data, id) {
         this.itemsCollection = this.afs.collection(tabla);
@@ -1834,9 +1931,11 @@ var OnesignalService = /** @class */ (function () {
             'included_segments': ['All'],
             'contents': { 'en': mensaje }
         };
-        this.http.post('https://onesignal.com/api/v1/notifications', data).subscribe(function (result) {
+        /*this.http.post('https://onesignal.com/api/v1/notifications', data).subscribe(
+          result => {
             console.log(result);
-        });
+          }
+        );*/
     };
     OnesignalService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),

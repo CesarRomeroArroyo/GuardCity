@@ -15,6 +15,9 @@
     },
     "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "com.guardcity.app"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.guardcity.app"
     }
   },
   "dependent_plugins": {}
