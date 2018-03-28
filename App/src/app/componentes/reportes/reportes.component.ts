@@ -48,7 +48,7 @@ export class ReportesComponent implements OnInit, AfterViewInit {
       const img = 'data:image/jpeg;base64,' + imageData;
       this.imagen = {src: this.domSanitizer.bypassSecurityTrustUrl(img), width: '100%', height: '100%'};
      }, (err) => {
-       alert('Ocurrio un error al tratar de usar la camara');
+        this.base64Image = '';
      });
   }
 
@@ -65,18 +65,26 @@ export class ReportesComponent implements OnInit, AfterViewInit {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.reporte.latitud = resp.coords.latitude;
       this.reporte.longitud = resp.coords.longitude;
-      this.reporte.imagen = this.base64Image;
-      this.reporte.hora = this.appSettings.getCurrentHour();
-      const usuario = JSON.parse(this.local.obtener('GUARDCITY_USER'))[0];
-      this.reporte.fecha = this.appSettings.getCurrentDay();
-      this.reporte.usuario = usuario.id;
-      this.service.guardarDatos('Reportes', this.reporte);
-      setTimeout(() => {
-        this.oneSignal.enviarPush(`Se ha reportado ${this.reporte.tipo}, ${this.reporte.comentario}`);
-        this.inicializarReporte();
+      const ciudad = JSON.parse(this.local.obtener('GUARDCITY_CITY'))[0];
+      const distaCiudad = this.appSettings.obtenerDistancia(ciudad.longitud, ciudad.latitud, resp.coords.longitude,
+        resp.coords.latitude);
+      if (parseFloat(ciudad.limite) > distaCiudad) {
+          this.reporte.imagen = this.base64Image;
+          this.reporte.hora = this.appSettings.getCurrentHour();
+          const usuario = JSON.parse(this.local.obtener('GUARDCITY_USER'))[0];
+          this.reporte.fecha = this.appSettings.getCurrentDay();
+          this.reporte.usuario = usuario.id;
+          this.service.guardarDatos('Reportes', this.reporte);
+          setTimeout(() => {
+            // this.oneSignal.enviarPush(`Se ha reportado ${this.reporte.tipo}, ${this.reporte.comentario}`);
+            this.inicializarReporte();
+            $('#modalCargando').modal('close');
+            $('#modalGuardado').modal('open');
+          }, 17000);
+      } else {
         $('#modalCargando').modal('close');
-        $('#modalGuardado').modal('open');
-      }, 17000);
+        $('#modalError').modal('open');
+      }
    }).catch((error) => {
      alert('Existe un problema con sus GPS o no tiene instalado un modulo de GPS');
    });
@@ -86,6 +94,10 @@ export class ReportesComponent implements OnInit, AfterViewInit {
     $('#modalGuardado').modal('close');
     this.imagen = {src: 'assets/img/camara.jpg', width: '50%', height: '50%'};
     this.router.navigate(['/reportedia']);
+  }
+
+  ocultarCargando() {
+    $('#modalError').modal('close');
   }
 
   inicializarReporte() {

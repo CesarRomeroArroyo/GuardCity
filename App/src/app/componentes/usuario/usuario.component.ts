@@ -40,10 +40,10 @@ export class UsuarioComponent implements OnInit, AfterViewInit {
   actualizarStorage() {
     $('#modal1').modal('close');
     const dataUser: any[] = [];
-    this.obtenerCiudad(this.usuario);
     dataUser.push(this.usuario);
     this.local.agregar('GUARDCITY_USER', JSON.stringify(dataUser));
     this.usuario = JSON.parse(this.local.obtener('GUARDCITY_USER'))[0];
+    this.obtenerCiudad(this.usuario);
   }
 
   obtenerCiudad(usuario) {

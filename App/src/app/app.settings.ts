@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class  AppSettings {
-    // public endPointCore = 'http://mycsoftware.com/zinniaCore/apiCore.php/';
     public endPointCore = 'http://localhost:56929/api/';
     public endPointTitan = 'http://localhost:56929/api/';
+    public distancia;
 
     guid() {
         function s4() {
@@ -288,5 +288,30 @@ export class  AppSettings {
                   break;
             }
           return data[0];
+    }
+
+    private rad (x) {
+      return x * Math.PI / 180;
+    }
+
+    obtenerDistancia(lon1, lat1, lon2, lat2, tipo= 'M') {
+      const R = 6378.137; // Radio de la tierra en km
+      lon1 = parseFloat(lon1);
+      lon2 = parseFloat(lon2);
+      lat1 = parseFloat(lat1);
+      lat2 = parseFloat(lat2);
+
+      const dLat = this.rad (lat2 - lat1);
+      const dLong = this.rad(lon2 - lon1);
+      const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.rad(lat1)) * Math.cos(this.rad(lat2))
+                * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const d = R * c;
+      switch (tipo) {
+        case 'M':
+          return d * 1000;
+        case 'K':
+          return d;
+      }
     }
 }

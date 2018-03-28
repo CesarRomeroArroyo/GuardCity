@@ -85,7 +85,7 @@
     </div>
     <div class="col s12">
       <label><b>Contraseña</b></label>
-        <input id="password" name="password" type="text" style="text-align: center" [(ngModel)]="nuevoUsuario.password">
+        <input id="password2" name="password2" type="text" style="text-align: center" [(ngModel)]="nuevoUsuario.password">
     </div>
     <div class="col s12">
         <label><b>Ciudad</b></label>
@@ -109,3 +109,16 @@
     <i class="fa fa-circle-o-notch fa-5x fa-spin"></i>
   </div>
 </div>
+
+<div id="modalError" class="modal">
+  <div class="modal-content" style="text-align: center">
+    <h5>GuardCity</h5>
+    Ya existe un usuario con este correo, intente con otro correo para poder crear un nuevo usuario
+    <div class="col s12">                                
+        <a class="waves-effect waves-light btn-large" style="width: 99%" (click)="ocultarError()">
+            <i class="fa fa-check"></i> Aceptar
+        </a>
+    </div>
+  </div>
+</div>
+

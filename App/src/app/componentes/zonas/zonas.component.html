@@ -22,7 +22,9 @@
         </agm-info-window>
     </agm-marker>
     <agm-marker [latitude]="obtenerFlotante(reporte.latitud)" [longitude]="obtenerFlotante(reporte.longitud)" [iconUrl]="reporte.icon" *ngFor="let reporte of reportes">
-        <agm-info-window>{{reporte.tipo}}<br/> {{reporte.comentario}}</agm-info-window>
+        <agm-info-window>
+          {{reporte.tipo}}<br/> {{reporte.comentario}}
+        </agm-info-window>
     </agm-marker>
 </agm-map>
 

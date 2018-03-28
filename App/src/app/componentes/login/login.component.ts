@@ -69,6 +69,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
         complete: function() {  } // Callback for Modal close
       }
     );
+      $('#modalError').modal({
+        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: .5, // Opacity of modal background
+        inDuration: 300, // Transition in duration
+        outDuration: 200, // Transition out duration
+        startingTop: '4%', // Starting top style attribute
+        endingTop: '20%', // Ending top style attribute
+        ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        },
+        complete: function() {  } // Callback for Modal close
+      }
+    );
   }
 
   mostrarNuevoUsuario() {
@@ -101,12 +113,25 @@ export class LoginComponent implements OnInit, AfterViewInit {
   agregarNuevoUsuario() {
     $('#modal').modal('close');
     $('#modalCargando').modal('open');
-    this.service.guardarDatos('Usuario', this.nuevoUsuario);
-    setTimeout(() => {
-      $('#modalCargando').modal('close');
-      this.mensaje = 'Usuario Creado Correctamente';
-      $('#modal1').modal('open');
-    }, 3000);
+      this.service.obtenerDatosUsuarioCorreo(this.nuevoUsuario.correo).subscribe(
+        result => {
+          if (result.length > 0) {
+            $('#modalError').modal('open');
+          } else {
+            this.service.guardarDatos('Usuario', this.nuevoUsuario);
+            setTimeout(() => {
+              $('#modalCargando').modal('close');
+              this.mensaje = 'Usuario Creado Correctamente';
+              $('#modal1').modal('open');
+            }, 3000);
+          }
+        }
+      );
+  }
+
+  ocultarError() {
+    $('#modalCargando').modal('close');
+    $('#modalError').modal('close');
   }
 
 }

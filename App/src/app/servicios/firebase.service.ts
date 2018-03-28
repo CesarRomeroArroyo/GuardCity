@@ -48,6 +48,19 @@ export class FirebaseService {
     );
   }
 
+  obtenerDatosUsuarioCorreo(usuario: string): Observable<any> {
+    this.itemsCollection = this.afs.collection<any>('Usuario', ref => ref.where('correo', '==', usuario));
+    return this.itemsCollection.snapshotChanges().map(
+      actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as any;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
+  }
+
   obtenerDatosCiudadUsuario(ciudad: string): Observable<any> {
     this.itemsCollection = this.afs.collection<any>('Ciudades', ref => ref.where('texto', '==', ciudad));
     return this.itemsCollection.snapshotChanges().map(
